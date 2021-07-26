@@ -15,8 +15,8 @@ class LMFWPPT_LicenseHandler {
         add_action( 'wp_ajax_license_key', [ $this, 'license_key_add' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
 
-        if ( isset( $_GET['license_key'] ) ) {
-            $this->get_wp_license_details( sanitize_text_field( $_GET['license_key'] ) );
+        if ( isset( $_GET['lmfwppt-info'] ) && $_GET['lmfwppt-info'] == "true" ) {
+            $this->get_wp_license_details( $_GET );
         }
         
     }
@@ -63,28 +63,56 @@ class LMFWPPT_LicenseHandler {
         return $get_product;
     }
 
+    // Get Product details by product slug
+    function get_product_details_by_slug( $slug = null ){
 
-    // License Package Field add
-    function get_wp_license_details( $license_key = null ){
-        $response = array();
-
-        if ( !$license_key ) {
+        if ( !$slug ) {
             return false;
         }
 
+        global $wpdb;
+
+        $get_product = $wpdb->get_row( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}lmfwppt_products WHERE slug = %s", $slug), ARRAY_A );
+
+        return $get_product;
+    }
+
+
+    // License Package Field add
+    function get_wp_license_details( $args = array() ){
+        $response = array();
+
+        //ppr( $args );
+
+        if ( !is_array( $args ) ) {
+            return false;
+        }
+
+        $args = wp_parse_args( $args, array(
+            'product_slug' => '',
+            'license_key' => '',
+        ) );
+
         $download_link = add_query_arg( array(
-            'license_key' => $license_key,
+            'product_slug' => $args['product_slug'],
+            'license_key' => $args['license_key'],
             'action' => 'download',
         ), lmfwppt_api_url() );
 
-       $get_product = $this->get_license_details( $license_key );
+       $get_product = $this->get_product_details_by_slug( $args['product_slug'] );
 
         // change download url
-        $get_product['download_link'] = $download_link;
+        if ( isset( $get_product ) && is_array( $get_product ) ) {
+           $get_product['download_link'] = $download_link;
+        }
+        
 
-        ppr($get_product);
+        // Remove ID
+        if ( isset( $get_product['id'] ) ) {
+            unset( $get_product['id'] );
+        }
 
-        ppr($response);
+        echo json_encode($get_product, true);
 
         die();
     }
