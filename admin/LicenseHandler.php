@@ -79,16 +79,16 @@ class LMFWPPT_LicenseHandler {
 
 
     // License Package Field add
-    function get_wp_license_details( $args = array() ){
+    function get_wp_license_details( $posted_args = array() ){
         $response = array();
 
         //ppr( $args );
 
-        if ( !is_array( $args ) ) {
+        if ( !is_array( $posted_args ) ) {
             return false;
         }
 
-        $args = wp_parse_args( $args, array(
+        $args = wp_parse_args( $posted_args, array(
             'product_slug' => '',
             'license_key' => '',
         ) );
