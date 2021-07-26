@@ -17,7 +17,10 @@ class LMFWPPT_LicenseHandler {
 
         if ( isset( $_GET['lmfwppt-info'] ) && $_GET['lmfwppt-info'] == "true" ) {
             $this->get_wp_license_details( $_GET );
+            exit;
         }
+
+      
         
     }
 
@@ -105,16 +108,31 @@ class LMFWPPT_LicenseHandler {
         if ( isset( $get_product ) && is_array( $get_product ) ) {
            $get_product['download_link'] = $download_link;
         }
-        
 
+        // change date to last_updated
+        if ( isset( $get_product['dated'] ) ) {
+           $get_product['last_updated'] = $get_product['dated'];
+           unset( $get_product['dated'] );
+        }
+        
         // Remove ID
         if ( isset( $get_product['id'] ) ) {
             unset( $get_product['id'] );
         }
 
+        // Remove created_by
+        if ( isset( $get_product['created_by'] ) ) {
+            unset( $get_product['created_by'] );
+        }
+        
+        // Remove product_type
+        if ( isset( $get_product['product_type'] ) ) {
+            unset( $get_product['product_type'] );
+        }
+
         echo json_encode($get_product, true);
 
-        die();
+        exit;
     }
 
     // Product add form action
