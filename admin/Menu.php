@@ -10,6 +10,8 @@ class LMFWPPT_Menu {
      */
     function __construct() {
         add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+        add_action( 'admin_bar_menu', [ $this, 'admin_bar_menus' ], 1000 );
+
     }
 
     /**
@@ -41,6 +43,52 @@ class LMFWPPT_Menu {
         add_submenu_page( $parent_slug, __( 'Settings', 'lmfwppt' ), __( 'Settings', 'lmfwppt' ), $capability, 'lmfwppt-settings', [ $this, 'settings_page' ] );
 
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
+    }
+
+
+    // Admin Bar Menu
+    function admin_bar_menus( WP_Admin_Bar $wp_admin_bar ) {
+
+        //ppr( $wp_admin_bar);
+
+        if ( !is_super_admin() || !is_admin_bar_showing() )
+            return;
+
+        $parent_slug = 'license-manager-wppt';
+
+        $wp_admin_bar->add_menu( array(
+            'id'    => $parent_slug,
+            'parent' => 'top-secondary',
+            'group'  => null,
+            'title' => __( 'Dashboard', 'lmfwppt' ),
+            'href'  => admin_url('admin.php?page=license-manager-wppt'),
+            'meta' => [
+                'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+            ]
+        ) );
+        
+        $wp_admin_bar->add_menu( array(
+            'id'    => $parent_slug.'-plugins',
+            'parent' => 'top-secondary',
+            'group'  => null,
+            'title' => __( 'Plugins', 'lmfwppt' ),
+            'href'  => admin_url('admin.php?page=license-manager-wppt-plugins'),
+            'meta' => [
+                'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+            ]
+        ) );
+
+        $wp_admin_bar->add_menu( array(
+            'id'    => $parent_slug.'-plugins-add',
+            'parent' => $parent_slug.'-plugins',
+            'group'  => null,
+            'title' => __( 'Add New', 'lmfwppt' ),
+            'href'  => admin_url('admin.php?page=license-manager-wppt'),
+            'meta' => [
+                'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+            ]
+        ) );
+
     }
 
     /**
