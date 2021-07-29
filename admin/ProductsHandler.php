@@ -173,6 +173,7 @@ class LMFWPPT_ProductsHandler {
             'requires_php' => isset($post_data['requires_php']) ? sanitize_text_field( $post_data['requires_php'] ) : "",
             'download_link' => isset($post_data['download_link']) ? sanitize_text_field( $post_data['download_link'] ) : "",
             'created_by' => isset($post_data['created_by']) ? intval( $post_data['created_by'] ) : "",
+            'dated' => date('Y-m-d H:i:s'),
         );
 
         if ( isset( $post_data['product_id'] ) ) {
