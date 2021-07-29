@@ -60,16 +60,21 @@ class LMFWPPT_Menu {
             'id'    => $parent_slug,
             'parent' => 'top-secondary',
             'group'  => null,
+            'title' => __( 'License Manager', 'lmfwppt' ),
+            'href'  => admin_url('admin.php?page=license-manager-wppt'),
+        ) );
+
+        $wp_admin_bar->add_menu( array(
+            'id'    => $parent_slug.'-dashboard',
+            'parent' => $parent_slug,
+            'group'  => null,
             'title' => __( 'Dashboard', 'lmfwppt' ),
             'href'  => admin_url('admin.php?page=license-manager-wppt'),
-            'meta' => [
-                'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
-            ]
         ) );
         
         $wp_admin_bar->add_menu( array(
             'id'    => $parent_slug.'-plugins',
-            'parent' => 'top-secondary',
+            'parent' => $parent_slug,
             'group'  => null,
             'title' => __( 'Plugins', 'lmfwppt' ),
             'href'  => admin_url('admin.php?page=license-manager-wppt-plugins'),
