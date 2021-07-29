@@ -5,6 +5,8 @@
  */
 class LMFWPPT_Menu {
 
+    private $admin_menus;
+
     /**
      * Initialize the class
      */
@@ -32,6 +34,8 @@ class LMFWPPT_Menu {
             'dashicons-tickets-alt'
         );
 
+        $this->admin_menus = $hook;
+
         add_submenu_page( $parent_slug, __( 'Plugins - License manager for WordPress Themes and Plugins', 'lmfwppt' ), __( 'Dashboard', 'lmfwppt' ), $capability, $parent_slug, [ $this, 'dashboard_page' ] );
 
         add_submenu_page( $parent_slug, __( 'Plugins - License manager for WordPress Themes and Plugins', 'lmfwppt' ), __( 'Plugins', 'lmfwppt' ), $capability, $parent_slug.'-plugins', [ $this, 'plugins_page' ] );
@@ -48,51 +52,54 @@ class LMFWPPT_Menu {
 
     // Admin Bar Menu
     function admin_bar_menus( WP_Admin_Bar $wp_admin_bar ) {
-
-        //ppr( $wp_admin_bar);
-
-        if ( !is_super_admin() || !is_admin_bar_showing() )
-            return;
-
-        $parent_slug = 'license-manager-wppt';
-
-        $wp_admin_bar->add_menu( array(
-            'id'    => $parent_slug,
-            'parent' => 'top-secondary',
-            'group'  => null,
-            'title' => __( 'License Manager', 'lmfwppt' ),
-            'href'  => admin_url('admin.php?page=license-manager-wppt'),
-        ) );
-
-        $wp_admin_bar->add_menu( array(
-            'id'    => $parent_slug.'-dashboard',
-            'parent' => $parent_slug,
-            'group'  => null,
-            'title' => __( 'Dashboard', 'lmfwppt' ),
-            'href'  => admin_url('admin.php?page=license-manager-wppt'),
-        ) );
+        if ( $this->admin_menus == "toplevel_page_license-manager-wppt"  ) {
         
-        $wp_admin_bar->add_menu( array(
-            'id'    => $parent_slug.'-plugins',
-            'parent' => $parent_slug,
-            'group'  => null,
-            'title' => __( 'Plugins', 'lmfwppt' ),
-            'href'  => admin_url('admin.php?page=license-manager-wppt-plugins'),
-            'meta' => [
-                'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
-            ]
-        ) );
 
-        $wp_admin_bar->add_menu( array(
-            'id'    => $parent_slug.'-plugins-add',
-            'parent' => $parent_slug.'-plugins',
-            'group'  => null,
-            'title' => __( 'Add New', 'lmfwppt' ),
-            'href'  => admin_url('admin.php?page=license-manager-wppt'),
-            'meta' => [
-                'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
-            ]
-        ) );
+            if ( !is_admin_bar_showing() )
+                return;
+
+            $parent_slug = 'license-manager-wppt';
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug,
+                'parent' => 'top-secondary',
+                'group'  => null,
+                'title' => __( 'License Manager', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt'),
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-dashboard',
+                'parent' => $parent_slug,
+                'group'  => null,
+                'title' => __( 'Dashboard', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt'),
+            ) );
+            
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-plugins',
+                'parent' => $parent_slug,
+                'group'  => null,
+                'title' => __( 'Plugins', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt-plugins'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                ]
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-plugins-add',
+                'parent' => $parent_slug.'-plugins',
+                'group'  => null,
+                'title' => __( 'Add New', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                ]
+            ) );
+
+        }
+
 
     }
 
