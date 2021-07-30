@@ -14,6 +14,9 @@ class LMFWPPT_ProductsHandler {
         // Add license field ajax
         add_action( 'wp_ajax_lmfwppt_single_license_field', [ $this, 'license_package_ajax_add_action' ] );
 
+        // Add Section field ajax
+        add_action( 'wp_ajax_lmfwppt_single_section_field', [ $this, 'section_package_ajax_add_action' ] );
+
         // Product add action
         add_action( 'wp_ajax_product_add_form', [ $this, 'product_add' ] );
         //add_action( 'init', [ $this, 'product_add' ] );
@@ -130,6 +133,89 @@ class LMFWPPT_ProductsHandler {
 
         return do_action( 'lmfwppt_license_field_after_wrap', $output, $args );
     }
+
+    // Section information Field add
+    function section_package_ajax_add_action(){
+
+        $key = sanitize_text_field( $_POST['key'] );
+
+        ob_start();
+
+        echo self::section_package_field( array(
+            'key' => $key,
+            'thiskey' => $key,
+        ) );
+
+        $output = ob_get_clean();
+
+        echo $output;
+
+        die();
+    }
+
+    // Single Section field
+    public static function section_package_field( $args ){
+
+        $defaults = array (
+            'key' => '',
+            'package_id' => '',
+            'label' => '',
+            'product_id' => '',
+            'name' => '',
+            'content' => '',
+        );
+
+        // Parse incoming $args into an array and merge it with $defaults
+        $args = wp_parse_args( $args, $defaults );
+
+        // Let's extract the array to variable
+        extract( $args );
+
+        // Array key
+        //$key =  isset( $args['key'] ) ? $args['key'] : "";
+        $key =  !empty( $package_id ) ? $package_id : wp_generate_password( 3, false );;
+   
+        $field_name = "lmfwppt[license_package][$key]";
+
+        ob_start();
+        do_action( 'lmfwppt_license_field_before_wrap', $args );
+        ?>
+
+        <div id="postimagediv" class="postbox lmfwppt_license_field"> <!-- Wrapper Start -->
+            <a class="header lmfwppt-toggle-head" data-toggle="collapse">
+                <span id="poststuff">
+                    <h2 class="hndle">
+                        <input id="<?php esc_attr_e( $field_name ); ?>-section_name" class="regular-text" type="text" name="<?php esc_attr_e( $field_name ); ?>[name]" value="<?php echo esc_attr( $name ); ?>" placeholder="<?php echo esc_attr( 'Section Title', 'lmfwppt' ); ?>" required />
+                        <span class="dashicons indicator_field"></span>
+                        <span class="delete_field">&times;</span>
+                    </h2>
+                </span>
+            </a>
+            <div class="collapse lmfwppt-toggle-wrap">
+                <div class="inside">
+                    <table class="form-table">
+
+                        <tr valign="top">
+                             
+                            <div class="section-content">
+                                <label for="<?php esc_attr_e( $field_name ); ?>-section_content"><?php esc_html_e( 'Section Content', 'lmfwppt' ); ?></label>
+                            </div>
+                             
+                            <td style="padding: 0; width: 100%;">
+                                <textarea style="width: 100%;" id="<?php esc_attr_e( $field_name ); ?>-section_content" name="<?php esc_attr_e( $field_name ); ?>[content]" rows="6" cols="100" placeholder="<?php echo esc_attr( 'Section Content', 'lmfwppt' ); ?>"></textarea>  
+                            </td>
+                             
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <!-- Wrapper end below -->
+        </div>
+        <?php
+        $output = ob_get_clean();
+
+        return do_action( 'lmfwppt_license_field_after_wrap', $output, $args );
+    }
     
     // License Packages Content Render
     function license_content( $output, $args ){
@@ -172,6 +258,7 @@ class LMFWPPT_ProductsHandler {
             'requires' => isset($post_data['requires']) ? sanitize_text_field( $post_data['requires'] ) : "",
             'requires_php' => isset($post_data['requires_php']) ? sanitize_text_field( $post_data['requires_php'] ) : "",
             'download_link' => isset($post_data['download_link']) ? sanitize_text_field( $post_data['download_link'] ) : "",
+            'banner' => isset($post_data['banners']) ? sanitize_text_field( $post_data['banners'] ) : "",
             'created_by' => isset($post_data['created_by']) ? intval( $post_data['created_by'] ) : "",
             'dated' => date('Y-m-d H:i:s'),
         );
@@ -247,6 +334,25 @@ class LMFWPPT_ProductsHandler {
                 'product_id' => $package['product_id'],
                 'update_period' => $package['update_period'],
                 'domain_limit' => $package['domain_limit']
+            ) );
+        }
+
+    }
+
+    // Generate html from Section array
+    public static function get_section_html( $get_packages = null ){
+        if( !$get_packages ){
+            return;
+        }
+
+        foreach ($get_packages as $package) {
+            self::section_package_field( array(
+                'key' => $package['package_id'],
+                'package_id' => $package['package_id'],
+                'label' => $package['label'],
+                'product_id' => $package['product_id'],
+                'name' => $package['name'],
+                'content' => $package['content']
             ) );
         }
 

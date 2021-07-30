@@ -48,6 +48,39 @@
             return false;
         });
 
+        // Add Section Field 
+        $(document).on('click', '.add-section-information', function(){
+            var $this = $(this);
+
+            var keyLen = jQuery('.lmfwppt_license_field').length;
+
+            var data = {
+                action: 'lmfwppt_single_section_field',
+                key: keyLen,
+                thiskey: keyLen,
+            }
+
+            $.ajax({
+              url: ajaxurl,
+              type: 'post',
+              data: data,
+              beforeSend : function ( xhr ) {
+                $this.prop('disabled', true);
+              },
+              success: function( res ) {
+                $this.prop('disabled', false);
+
+                // Data push
+                $('#section-information-fields').append(res);
+              },
+              error: function( result ) {
+                $this.prop('disabled', false);
+                console.error( result );
+              }
+            });
+        });
+
+
         // Add File
         var file_frame;
         $(document).on('click', '#download_link_button', function(){

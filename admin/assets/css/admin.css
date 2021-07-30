@@ -145,3 +145,7 @@ span.delete_field:hover{
 #lmfwppt_license_package{
     display: none;
 }
+
+.section-content label {
+    font-weight: 600;
+}
