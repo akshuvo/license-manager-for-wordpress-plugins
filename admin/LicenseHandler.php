@@ -135,6 +135,11 @@ class LMFWPPT_LicenseHandler {
             $get_product['banners'] = unserialize( $get_product['banners'] );
         }
 
+        //Remove serialize sections
+        if ( isset( $get_product['sections'] ) ) {
+            $get_product['sections'] = unserialize( $get_product['sections'] );
+        }
+
         echo json_encode($get_product, true);
 
         exit;

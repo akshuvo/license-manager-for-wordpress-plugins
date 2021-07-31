@@ -158,7 +158,7 @@ class LMFWPPT_ProductsHandler {
 
         $defaults = array (
             'key' => '',
-            'package_id' => '',
+            'section_id' => '',
             'label' => '',
             'product_id' => '',
             'name' => '',
@@ -173,9 +173,9 @@ class LMFWPPT_ProductsHandler {
 
         // Array key
         //$key =  isset( $args['key'] ) ? $args['key'] : "";
-        $key =  !empty( $package_id ) ? $package_id : wp_generate_password( 3, false );;
+        $key =  !empty( $key ) ? $key : wp_generate_password( 3, false );;
    
-        $field_name = "lmfwppt[license_package][$key]";
+        $field_name = "lmfwppt[sections][$key]";
 
         ob_start();
         do_action( 'lmfwppt_license_field_before_wrap', $args );
@@ -250,6 +250,7 @@ class LMFWPPT_ProductsHandler {
         global $wpdb;
         $table = $wpdb->prefix.'lmfwppt_products';
         var_dump($post_data);
+
         $data = array(
             'name' => isset($post_data['name']) ? sanitize_text_field( $post_data['name'] ) : "",
             'slug' => isset($post_data['slug']) ? sanitize_text_field( $post_data['slug'] ) : "",
@@ -260,6 +261,7 @@ class LMFWPPT_ProductsHandler {
             'requires_php' => isset($post_data['requires_php']) ? sanitize_text_field( $post_data['requires_php'] ) : "",
             'download_link' => isset($post_data['download_link']) ? sanitize_text_field( $post_data['download_link'] ) : "",
             'banners' => isset($post_data['banners']) ? serialize( array_map('esc_url_raw', $post_data['banners'])):"",
+            'sections' => isset($post_data['sections']) ? serialize( $post_data['sections'] ) : "",
             'created_by' => isset($post_data['created_by']) ? intval( $post_data['created_by'] ) : "",
             'dated' => date('Y-m-d H:i:s'),
         );
