@@ -249,6 +249,7 @@ class LMFWPPT_ProductsHandler {
     function create_product( $post_data = array() ){
         global $wpdb;
         $table = $wpdb->prefix.'lmfwppt_products';
+        var_dump($post_data);
         $data = array(
             'name' => isset($post_data['name']) ? sanitize_text_field( $post_data['name'] ) : "",
             'slug' => isset($post_data['slug']) ? sanitize_text_field( $post_data['slug'] ) : "",
@@ -258,7 +259,7 @@ class LMFWPPT_ProductsHandler {
             'requires' => isset($post_data['requires']) ? sanitize_text_field( $post_data['requires'] ) : "",
             'requires_php' => isset($post_data['requires_php']) ? sanitize_text_field( $post_data['requires_php'] ) : "",
             'download_link' => isset($post_data['download_link']) ? sanitize_text_field( $post_data['download_link'] ) : "",
-            'banner' => isset($post_data['banners']) ? sanitize_text_field( $post_data['banners'] ) : "",
+            'banners' => isset($post_data['banners']) ? serialize( array_map('esc_url_raw', $post_data['banners'])):"",
             'created_by' => isset($post_data['created_by']) ? intval( $post_data['created_by'] ) : "",
             'dated' => date('Y-m-d H:i:s'),
         );

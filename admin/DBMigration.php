@@ -1,7 +1,7 @@
 <?php
 class LMFWPPT_DBMigration {
 	
-	var $db_version = 10; // initial db version, don't use floats
+	var $db_version = 11; // initial db version, don't use floats
     var $db_version_key = "lmfwppt_db_version";
 
 	function __construct(){
@@ -13,7 +13,7 @@ class LMFWPPT_DBMigration {
 	}
 
 	function run_migration(){
-		if ( version_compare( get_option( 'lmfwppt_db_version', "0" ), $this->get_db_version(), '<' ) || 0 ) {
+		if ( version_compare( get_option( 'lmfwppt_db_version', "1" ), $this->get_db_version(), '<' ) || 0 ) {
 			
 			global $wpdb;
 
@@ -31,7 +31,7 @@ class LMFWPPT_DBMigration {
 	          `requires` varchar(30) DEFAULT NULL,
 	          `requires_php` varchar(30) DEFAULT NULL,
 	          `download_link` varchar(255) DEFAULT NULL,
-	          `banner` varchar(250) DEFAULT NULL,
+	          `banners` varchar(250) DEFAULT NULL,
 	          `created_by` int(20) unsigned NOT NULL,
 	          `dated` datetime NOT NULL DEFAULT NOW(),
 	          PRIMARY KEY (`id`),
