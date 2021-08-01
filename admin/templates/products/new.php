@@ -33,6 +33,13 @@ $get_product = wp_parse_args( $get_product, $product_defaults_args );
 // Let's extract the array to variable
 extract( $get_product );
 
+$banner = unserialize($banners);
+
+$low = isset($banner['low']) ? $banner['low'] : '';
+
+$high =  isset($banner['high']) ? $banner['high'] : '';
+
+
 ?>
 <div class="wrap">
     <div class="lmwppt-wrap">
@@ -109,19 +116,20 @@ extract( $get_product );
             </div>
 
             <!-- banner -->
+           
             <div class="lmwppt-inner-card">
                 <div class="lmfwppt-form-section" id="product-information">
                     <h2><?php esc_html_e( 'Banners', 'lmfwppt' ); ?></h2>
 
                     <div class="lmfwppt-form-field">
                         <div class="lmfwppt-file-field">
-                            <input type="text" name="lmfwppt[banners][low]" id="banners_low" class="regular-text" placeholder="<?php esc_attr_e( 'Low', 'lmfwppt' ); ?>" value="<?php echo esc_attr( $banners ); ?>">
+                            <input type="text" name="lmfwppt[banners][low]" id="banners_low" class="regular-text" placeholder="<?php esc_attr_e( 'Low', 'lmfwppt' ); ?>" value="<?php echo $low; ?>">
                             <button class="button" type="button" id="banners_low_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
                         </div>
                     </div> 
                     <div class="lmfwppt-form-field">
                         <div class="lmfwppt-file-field">
-                            <input type="text" name="lmfwppt[banners][high]" id="banners_high" class="regular-text" placeholder="<?php esc_attr_e( 'High', 'lmfwppt' ); ?>" value="<?php echo esc_attr( $banners ); ?>">
+                            <input type="text" name="lmfwppt[banners][high]" id="banners_high" class="regular-text" placeholder="<?php esc_attr_e( 'High', 'lmfwppt' ); ?>" value="<?php echo $high; ?>">
                             <button class="button" type="button" id="banners_high_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
                         </div>
                     </div> 
