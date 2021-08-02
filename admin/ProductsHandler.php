@@ -159,7 +159,6 @@ class LMFWPPT_ProductsHandler {
         $defaults = array (
             'key' => '',
             'section_id' => '',
-            'label' => '',
             'product_id' => '',
             'name' => '',
             'content' => '',
@@ -173,7 +172,7 @@ class LMFWPPT_ProductsHandler {
 
         // Array key
         //$key =  isset( $args['key'] ) ? $args['key'] : "";
-        $key =  !empty( $key ) ? $key : wp_generate_password( 3, false );;
+        $key =  !empty( $key ) ? $key : wp_generate_password( 3, false );
    
         $field_name = "lmfwppt[sections][$key]";
 

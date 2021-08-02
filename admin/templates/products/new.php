@@ -9,6 +9,7 @@ $product_defaults_args = array (
     'requires_php' => '',
     'download_link' => '',
     'banners' => '',
+    'sections' => '',
     'created_by' => '',
     'dated' => '',
 );
@@ -33,12 +34,13 @@ $get_product = wp_parse_args( $get_product, $product_defaults_args );
 // Let's extract the array to variable
 extract( $get_product );
 
-$banner = unserialize($banners);
+// banners unserialize
+$banner = unserialize( $banners );
+$low = isset ( $banner['low'] ) ? $banner['low'] : '';
+$high = isset ( $banner['high'] ) ? $banner['high'] : '';
 
-$low = isset($banner['low']) ? $banner['low'] : '';
-
-$high =  isset($banner['high']) ? $banner['high'] : '';
-
+// sections unserialize
+$section = unserialize($sections);
 
 ?>
 <div class="wrap">
@@ -142,7 +144,7 @@ $high =  isset($banner['high']) ? $banner['high'] : '';
                 <div class="lmfwppt-form-section" id="license-information">
                     <h2><?php esc_html_e( 'Section', 'lmfwppt' ); ?></h2>
                     <div id="section-information-fields">
-                        <?php LMFWPPT_ProductsHandler::get_section_html( $get_packages ); ?>
+                        <!-- <?php LMFWPPT_ProductsHandler::get_section_html( $get_packages ); ?> -->
                     </div>
                     <button class="button add-section-information" type="button"><?php esc_html_e( 'Add Section Package', 'lmfwppt' ); ?></button>
                 </div>
