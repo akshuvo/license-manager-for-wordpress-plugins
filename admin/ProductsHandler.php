@@ -15,7 +15,7 @@ class LMFWPPT_ProductsHandler {
         add_action( 'wp_ajax_lmfwppt_single_license_field', [ $this, 'license_package_ajax_add_action' ] );
 
         // Add Section field ajax
-        add_action( 'wp_ajax_lmfwppt_single_section_field', [ $this, 'section_package_ajax_add_action' ] );
+        add_action( 'wp_ajax_lmfwppt_single_section_field', [ $this, 'product_sections_ajax_add_action' ] );
 
         // Product add action
         add_action( 'wp_ajax_product_add_form', [ $this, 'product_add' ] );
@@ -135,13 +135,13 @@ class LMFWPPT_ProductsHandler {
     }
 
     // Section information Field add
-    function section_package_ajax_add_action(){
+    function product_sections_ajax_add_action(){
 
         $key = sanitize_text_field( $_POST['key'] );
 
         ob_start();
 
-        echo self::section_package_field( array(
+        echo self::product_sections_field( array(
             //'key' => $key,
             'thiskey' => $key,
         ) );
@@ -154,12 +154,10 @@ class LMFWPPT_ProductsHandler {
     }
 
     // Single Section field
-    public static function section_package_field( $args ){
+    public static function product_sections_field( $args ){
 
         $defaults = array (
             'key' => '',
-            'section_id' => '',
-            'product_id' => '',
             'name' => '',
             'content' => '',
         );
@@ -355,7 +353,7 @@ class LMFWPPT_ProductsHandler {
         }
 
         foreach ($get_sections as $package) {
-            self::section_package_field( array(
+            self::product_sections_field( array(
                 'key' => sanitize_title($package['name']),
                 'name' => $package['name'],
                 'content' => $package['content']
