@@ -159,7 +159,7 @@ class LMFWPPT_ProductsListTable extends \WP_List_Table{
             'product_type' => $product_type
         ];
 
-        $args = wp_parse_args( $args, $defaults );
+        $args = wp_parse_args( $defaults );
         $product_list = $wpdb->prepare("SELECT count(id) FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s 
             LIMIT %d",
             $args['product_type'], 

@@ -92,7 +92,63 @@ class LMFWPPT_Menu {
                 'parent' => $parent_slug.'-plugins',
                 'group'  => null,
                 'title' => __( 'Add New', 'lmfwppt' ),
-                'href'  => admin_url('admin.php?page=license-manager-wppt'),
+                'href'  => admin_url('admin.php?page=license-manager-wppt-plugins&action=new'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                ]
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-themes',
+                'parent' => $parent_slug,
+                'group'  => null,
+                'title' => __( 'Themes', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt-themes'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                ]
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id' => $parent_slug.'-themes-add',
+                'parent' => $parent_slug.'-themes',
+                'group' => null,
+                'title' => __( 'Add New', 'lmfwppt' ),
+                'href' => admin_url('admin.php?page=license-manager-wppt-themes&action=new'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ),
+                ]
+
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-license',
+                'parent' => $parent_slug,
+                'group'  => null,
+                'title' => __( 'License', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt-licenses'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                ]
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-license-add',
+                'parent' => $parent_slug.'-license',
+                'group'  => null,
+                'title' => __( 'Add New', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=license-manager-wppt-licenses&action=new'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                ]
+            ) );
+
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-setting',
+                'parent' => $parent_slug,
+                'group'  => null,
+                'title' => __( 'Setting', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=lmfwppt-settings'),
                 'meta' => [
                     'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
                 ]
