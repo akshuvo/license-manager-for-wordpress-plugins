@@ -266,6 +266,7 @@ class LMFWPPT_ProductsHandler {
             'download_link' => isset($post_data['download_link']) ? sanitize_text_field( $post_data['download_link'] ) : "",
             'banners' => isset($post_data['banners']) ? serialize( array_map('esc_url_raw', $post_data['banners'])):"",
             'sections' => isset($post_data['sections']) ? serialize( $sections ) : "",
+            'author' => isset($post_data['author']) ? sanitize_text_field( $post_data['author'] ) : "",
             'created_by' => isset($post_data['created_by']) ? intval( $post_data['created_by'] ) : "",
             'dated' => date('Y-m-d H:i:s'),
         );

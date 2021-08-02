@@ -10,6 +10,7 @@ $product_defaults_args = array (
     'download_link' => '',
     'banners' => '',
     'sections' => '',
+    'author' => '',
     'created_by' => '',
     'dated' => '',
 );
@@ -118,9 +119,7 @@ $sections_arr = unserialize($sections);
                     <button class="button add-license-information" type="button"><?php esc_html_e( 'Add License Package', 'lmfwppt' ); ?></button>
                 </div>
             </div>
-
             <!-- banner -->
-           
             <div class="lmwppt-inner-card">
                 <div class="lmfwppt-form-section" id="product-information">
                     <h2><?php esc_html_e( 'Banners', 'lmfwppt' ); ?></h2>
@@ -140,7 +139,6 @@ $sections_arr = unserialize($sections);
 
                 </div>
             </div>
-
             <!-- sections -->
             <div class="lmwppt-inner-card">
                 <div class="lmfwppt-form-section" id="license-information">
@@ -149,6 +147,12 @@ $sections_arr = unserialize($sections);
                         <?php LMFWPPT_ProductsHandler::get_section_html( $sections_arr ); ?>
                     </div>
                     <button class="button add-section-information" type="button"><?php esc_html_e( 'Add Section Package', 'lmfwppt' ); ?></button>
+                </div>
+            </div>
+            <div class="lmwppt-inner-card">
+                <div class="lmfwppt-form-field">
+                    <label for="author"><?php esc_html_e( 'Author', 'lmfwppt' ); ?></label>
+                    <input type="text" name="lmfwppt[author]" id="author" class="regular-text product_name_input" placeholder="Author Name" value="<?php echo esc_attr( $author ); ?>" required>
                 </div>
             </div>
 
