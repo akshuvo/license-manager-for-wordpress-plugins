@@ -27,6 +27,8 @@ if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id']
     // Get packages data
     $get_packages = LMFWPPT_ProductsHandler::get_packages( $product_id );
 
+
+
 }
 
 // Parse incoming $args into an array and merge it with $defaults
@@ -40,7 +42,7 @@ $low = isset ( $banner['low'] ) ? $banner['low'] : '';
 $high = isset ( $banner['high'] ) ? $banner['high'] : '';
 
 // sections unserialize
-$section = unserialize($sections);
+$sections_arr = unserialize($sections);
 
 ?>
 <div class="wrap">
@@ -142,9 +144,9 @@ $section = unserialize($sections);
             <!-- sections -->
             <div class="lmwppt-inner-card">
                 <div class="lmfwppt-form-section" id="license-information">
-                    <h2><?php esc_html_e( 'Section', 'lmfwppt' ); ?></h2>
+                    <h2><?php esc_html_e( 'Sections', 'lmfwppt' ); ?></h2>
                     <div id="section-information-fields">
-                        <!-- <?php LMFWPPT_ProductsHandler::get_section_html( $get_packages ); ?> -->
+                        <?php LMFWPPT_ProductsHandler::get_section_html( $sections_arr ); ?>
                     </div>
                     <button class="button add-section-information" type="button"><?php esc_html_e( 'Add Section Package', 'lmfwppt' ); ?></button>
                 </div>

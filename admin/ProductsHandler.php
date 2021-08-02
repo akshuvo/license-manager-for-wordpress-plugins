@@ -142,7 +142,7 @@ class LMFWPPT_ProductsHandler {
         ob_start();
 
         echo self::section_package_field( array(
-            'key' => $key,
+            //'key' => $key,
             'thiskey' => $key,
         ) );
 
@@ -201,7 +201,7 @@ class LMFWPPT_ProductsHandler {
                             </div>
                              
                             <td style="padding: 0; width: 100%;">
-                                <textarea style="width: 100%;" id="<?php esc_attr_e( $field_name ); ?>-section_content" name="<?php esc_attr_e( $field_name ); ?>[content]" rows="6" cols="100" placeholder="<?php echo esc_attr( 'Section Content', 'lmfwppt' ); ?>"></textarea>  
+                                <textarea style="width: 100%;" id="<?php esc_attr_e( $field_name ); ?>-section_content" name="<?php esc_attr_e( $field_name ); ?>[content]" rows="6" cols="100" placeholder="<?php echo esc_attr( 'Section Content', 'lmfwppt' ); ?>"><?php echo $content; ?></textarea>  
                             </td>
                              
                         </tr>
@@ -248,7 +248,14 @@ class LMFWPPT_ProductsHandler {
     function create_product( $post_data = array() ){
         global $wpdb;
         $table = $wpdb->prefix.'lmfwppt_products';
-        var_dump($post_data);
+
+        $sections = array();
+        if ( isset( $post_data['sections'] ) ) {
+            foreach( $post_data['sections'] as $section ){
+                $sec_key = sanitize_title( $section['name'] );
+                $sections[ $sec_key ] = $section;
+            }
+        } 
 
         $data = array(
             'name' => isset($post_data['name']) ? sanitize_text_field( $post_data['name'] ) : "",
@@ -260,7 +267,7 @@ class LMFWPPT_ProductsHandler {
             'requires_php' => isset($post_data['requires_php']) ? sanitize_text_field( $post_data['requires_php'] ) : "",
             'download_link' => isset($post_data['download_link']) ? sanitize_text_field( $post_data['download_link'] ) : "",
             'banners' => isset($post_data['banners']) ? serialize( array_map('esc_url_raw', $post_data['banners'])):"",
-            'sections' => isset($post_data['sections']) ? serialize( $post_data['sections'] ) : "",
+            'sections' => isset($post_data['sections']) ? serialize( $sections ) : "",
             'created_by' => isset($post_data['created_by']) ? intval( $post_data['created_by'] ) : "",
             'dated' => date('Y-m-d H:i:s'),
         );
@@ -342,17 +349,14 @@ class LMFWPPT_ProductsHandler {
     }
 
     // Generate html from Section array
-    public static function get_section_html( $get_packages = null ){
-        if( !$get_packages ){
+    public static function get_section_html( $get_sections = null ){
+        if( !$get_sections ){
             return;
         }
 
-        foreach ($get_packages as $package) {
+        foreach ($get_sections as $package) {
             self::section_package_field( array(
-                'key' => $package['package_id'],
-                'package_id' => $package['package_id'],
-                'label' => $package['label'],
-                'product_id' => $package['product_id'],
+                'key' => sanitize_title($package['name']),
                 'name' => $package['name'],
                 'content' => $package['content']
             ) );
