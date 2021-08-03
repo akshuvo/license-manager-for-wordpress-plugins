@@ -73,7 +73,7 @@ $sections_arr = unserialize($sections);
                     </div>
 
                     <div class="lmfwppt-form-field">
-                        <label for="product_type"><?php esc_html_e( 'Product Slug', 'lmfwppt' ); ?></label>
+                        <label for="product_type"><?php esc_html_e( 'Product Type', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_type]" id="product_type">
                             <option value="plugin" <?php selected( $product_type, 'plugin' ); ?> ><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
                             <option value="theme" <?php selected( $product_type, 'theme' ); ?> ><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
@@ -171,3 +171,5 @@ $sections_arr = unserialize($sections);
 
     </div>
 </div>
+
+ 
