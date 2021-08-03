@@ -82,9 +82,12 @@
 
 
         // Add File
-        var file_frame;
-        $(document).on('click', '#download_link_button', function(){
+        var file_frame, pushSelector, getFrameTitle;
+        $(document).on('click', '.trigger_media_frame', function(){
             var $this = $(this);
+
+            // Set Selector
+            pushSelector = $this.attr('data-push_selector');
 
             if ( undefined !== file_frame ) {
                 file_frame.open();
@@ -92,7 +95,7 @@
             }
 
             file_frame = wp.media.frames.file_frame = wp.media({
-                title: 'Select Theme/Plugin File',
+                title: 'Select The Appropriate File',
                 //frame:    'post',
                 //state:    'insert',
                 multiple: false,
@@ -102,10 +105,11 @@
                 button: {text: 'Insert'}
             });
 
-            file_frame.on( 'select', function() {
+            file_frame.on( 'select', function(e) {
 
                 var attachment = file_frame.state().get('selection').first().toJSON();
-                $('#download_link').val( attachment.url );
+
+                $(pushSelector).val( attachment.url );
 
             });
 

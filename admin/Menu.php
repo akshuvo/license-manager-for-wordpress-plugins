@@ -46,7 +46,6 @@ class LMFWPPT_Menu {
 
         add_submenu_page( $parent_slug, __( 'Settings', 'lmfwppt' ), __( 'Settings', 'lmfwppt' ), $capability, 'lmfwppt-settings', [ $this, 'settings_page' ] );
 
-        add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
     }
 
 
@@ -260,14 +259,6 @@ class LMFWPPT_Menu {
         }
     }
 
-    /**
-     * Enqueue scripts and styles
-     *
-     * @return void
-     */
-    public function enqueue_assets() {
-        wp_enqueue_media();
-    }
 
 }
 
