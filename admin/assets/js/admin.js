@@ -232,9 +232,8 @@
         //space remove dash add
         $(document).on('keyup', '#slug', function(e) {
             e.preventDefault();
-            
             var value = $(this).val().replace(" ", "-");
-            $('#slug').val(value);
+            $(this).val(value);
             
         });
 
