@@ -79,20 +79,7 @@ extract( $get_product );
                         <select name="lmfwppt[product_theme_list]" class="products_list" id="product_theme_list">
                             <option value=" " selected>Select Product</option>
                             <?php
-                                global $wpdb;
-
-                                $args = '';
-                                $defaults = [
-                                    'number' => 20,
-                                    'product_type' => "theme"
-                                ];
-
-                                $args = wp_parse_args( $args, $defaults );
-                                 $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s 
-                                    LIMIT %d",
-                                    $args['product_type'],$args['number']);
-
-                                 $items = $wpdb->get_results( $product_list);
+                                 $items = lmfwppt_get_product_list("theme");
                                  foreach ($items as $products_list):?>
                                     
                             <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
@@ -107,22 +94,9 @@ extract( $get_product );
                         <label for="product_plugin_list"><?php esc_html_e( 'Plugin Product List', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_plugin_list]" class="products_list" id="product_plugin_list">
                             <option value=" " selected>Select Product</option>
-                               <?php
-                                global $wpdb;
-
-                                $args = '';
-                                $defaults = [
-                                    'number' => 20,
-                                    'product_type' => "Plugin"
-                                ];
-
-                                $args = wp_parse_args( $args, $defaults );
-                                 $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s 
-                                    LIMIT %d",
-                                    $args['product_type'],$args['number']);
-
-                                 $items = $wpdb->get_results( $product_list);
-                                 foreach ($items as $products_list):?>
+                            <?php
+                                $items = lmfwppt_get_product_list("plugin");
+                                foreach ($items as $products_list):?>
                                     
                             <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
