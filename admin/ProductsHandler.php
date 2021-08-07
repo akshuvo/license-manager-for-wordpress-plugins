@@ -412,8 +412,12 @@ class LMFWPPT_ProductsHandler {
             wp_redirect( $redirected_to );
             exit;
 
-            }    
-        } 
+        }    
+    } 
+
+    public static function get_package_name( $package_id ){
+        
+    }
 
 }
 
