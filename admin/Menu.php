@@ -50,9 +50,13 @@ class LMFWPPT_Menu {
     }
 
 
+
+
     // Admin Bar Menu
     function admin_bar_menus( WP_Admin_Bar $wp_admin_bar ) {
-        if ( $this->admin_menus == "toplevel_page_license-manager-wppt"  ) {
+        $page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ): null;
+
+        if ( $page == "license-manager-wppt" || $page == "license-manager-wppt-plugins" || $page == "license-manager-wppt-themes" || $page == "license-manager-wppt-licenses" || $page == "lmfwppt-settings" && $this->admin_menus == "toplevel_page_license-manager-wppt"  ) {
         
 
             if ( !is_admin_bar_showing() )
@@ -153,10 +157,8 @@ class LMFWPPT_Menu {
                     'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
                 ]
             ) );
-
         }
-
-
+            
     }
 
     /**
