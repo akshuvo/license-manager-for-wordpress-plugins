@@ -416,8 +416,15 @@ class LMFWPPT_ProductsHandler {
     } 
 
     public static function get_package_name( $package_id ){
-        
-    }
+
+        if( !$package_id ){
+            return;
+        }
+
+        global $wpdb;
+        $query = $wpdb->prepare("SELECT label FROM {$wpdb->prefix}lmfwppt_license_packages WHERE package_id = %s", $package_id);
+        return $wpdb->get_var( $query );
+        }
 
 }
 

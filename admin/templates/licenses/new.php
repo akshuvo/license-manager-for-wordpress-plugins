@@ -132,30 +132,7 @@ extract( $get_product );
         </form>
 
     </div>
-<script type="text/javascript">
-    (function($) {
-        "use strict";
-
-        function product_type() {
-            var singleValues = $( "#product_type" ).val();
-            var theme_license_id = $( "#product_theme_list" ).val();
-            var plugin_license_id = $( "#product_plugin_list" ).val();
-            $("div#lmfwppt_theme_products").hide();
-            $("div#lmfwppt_plugin_products").hide();
-            if(singleValues == "Theme"){
-                $("div#lmfwppt_theme_products").show();
-                 
-            } 
-            else if(singleValues == "Plugin"){
-                $("div#lmfwppt_plugin_products").show();
-                 
-            }
-        }
-        $( "select" ).change( product_type );
-        product_type();
-
-    })(jQuery);
-</script>
+ 
 </div>
 
  
