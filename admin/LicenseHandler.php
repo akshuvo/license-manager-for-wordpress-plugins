@@ -165,7 +165,7 @@ class LMFWPPT_LicenseHandler {
             'license_key' => isset($post_data['license_key']) ? sanitize_text_field( $post_data['license_key'] ) : "",
             'package_id' => isset($post_data['package_id']) ? sanitize_text_field( $post_data['package_id'] ) : "",
             'order_id' => isset($post_data['order_id']) ? sanitize_text_field( $post_data['order_id'] ) : "",
-            'end_date' => isset($post_data['end_date']) ? intval( $post_data['end_date'] ) : "",
+            'end_date' => isset($post_data['end_date']) ? date("Y-m-d", strtotime( $post_data['end_date'] ) ) : "",
         );
 
         if ( isset( $post_data['license_id'] ) ) {

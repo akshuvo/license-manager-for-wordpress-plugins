@@ -113,7 +113,7 @@ extract( $get_product );
 
                     <div class="lmfwppt-form-field">
                         <label for="end_date"><?php esc_html_e( 'License End Date', 'lmfwppt' ); ?></label>
-                        <input type="number" name="lmfwppt[end_date]" id="end_date" class="regular-text product_name_input" placeholder="License End Date" value="<?php echo esc_attr( $end_date ); ?>" required>
+                        <input type="text" name="lmfwppt[end_date]" id="end_date" class="regular-text product_name_input" placeholder="License End Date" value="<?php echo esc_attr( $end_date ); ?>" required>
                     </div>
                 </div>
             </div>
