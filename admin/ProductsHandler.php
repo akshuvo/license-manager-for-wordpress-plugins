@@ -283,6 +283,7 @@ class LMFWPPT_ProductsHandler {
 
     }
 
+
     // Create package function
     function create_package( $post_data = array(), $product_id = null ){
         global $wpdb;

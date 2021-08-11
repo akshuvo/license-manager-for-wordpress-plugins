@@ -11,6 +11,7 @@ class LMFWPPT_LicenseHandler {
     function __construct() {
         
         add_action( 'wp_ajax_license_add_form', [ $this, 'license_add' ] );
+        add_action( 'wp_ajax_setting_add_form', [ $this, 'setting_add' ] );
         add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] );
         add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
@@ -178,6 +179,15 @@ class LMFWPPT_LicenseHandler {
         
         return $insert_id ? $insert_id : null;
 
+    }
+
+    // Setting add form action
+    function setting_add(){
+        if ( isset( $_POST['lmaction'] ) && $_POST['lmaction'] == "setting_add_form" ) {
+           $lmfwppt_settings = isset( $_POST['lmfwppt_settings'] ) ? $_POST['lmfwppt_settings'] : array();
+           update_option( 'lmfwppt_settings', $lmfwppt_settings );
+        }
+        die();
     }
 
     // Select Package 
