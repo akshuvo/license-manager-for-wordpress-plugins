@@ -12,7 +12,7 @@ class LMFWPPT_LicenseHandler {
         
         add_action( 'wp_ajax_license_add_form', [ $this, 'license_add' ] );
         add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] );
-        add_action( 'wp_ajax_license_key', [ $this, 'lmfwppt_license_key_genarate' ] );
+        add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
 
         if ( isset( $_GET['lmfwppt-info'] ) && $_GET['lmfwppt-info'] == "true" ) {
@@ -203,14 +203,14 @@ class LMFWPPT_LicenseHandler {
     }
 
 
-    // License Key Genarate
-    function lmfwppt_license_key_genarate(){
-        echo self::license_key_add();
+    // License Key Genarate Ajax Hook
+    function ajax_generate_license_key(){
+        echo self::generate_license_key();
         die();
     }
 
-    // ajax License Key Genarate
-    public static function license_key_add() {
+    // License Key Genarate function
+    public static function generate_license_key() {
         
         $key = rand();
         return $key;
