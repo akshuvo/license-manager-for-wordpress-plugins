@@ -221,10 +221,11 @@ class LMFWPPT_LicenseHandler {
 
     // License Key Genarate function
     public static function generate_license_key() {
-        
-        $key = rand();
-        return $key;
 
+        $prefix = lmfwppt_get_option('license_code_prefix');
+        $limit = lmfwppt_get_option('license_code_character_limit');
+        $key = wp_generate_password( $limit, false, false );
+        return $prefix.$key;
     }
 
     // Delete License Id
