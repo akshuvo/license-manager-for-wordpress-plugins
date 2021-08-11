@@ -29,6 +29,10 @@ $get_product = wp_parse_args( $get_product, $product_defaults_args );
 // Let's extract the array to variable
 extract( $get_product );
 
+if ( $end_date ) {
+    $end_date = date('Y-m-d', strtotime($end_date));
+}
+
 ?>
 <div class="wrap">
 
