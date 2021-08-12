@@ -11,7 +11,6 @@
 </div>
 
 
-
 <div class="wrap">
    <h1><?php _e( 'Add Setting', 'lmfwppt' ); ?></h1>
 
@@ -31,14 +30,7 @@
                   <th>
                      <div class="lmwppt-inner-card lmfwppt-buttons card-shameless">
                         <input type="hidden" name="lmaction" value="setting_add_form">
-                        <input type="hidden" name="lmfwppt[created_by]" value="<?php _e( get_current_user_id() ); ?>">
-                         
-                        <?php if( isset( $license_id ) ) : ?>
-                             <input type="hidden" name="lmfwppt[setting_id]" value="<?php _e( $license_id ); ?>">
-                        <?php endif; ?>
-                         
-                        <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>
-                        <?php submit_button( __( 'Add Setting', 'lmfwppt' ), 'primary', 'add_license' ); ?>
+                        <?php submit_button( __( 'Save', 'lmfwppt' ), 'primary' ); ?>
                      </div>
                   </th>
                </tr>
