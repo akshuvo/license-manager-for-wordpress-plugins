@@ -255,13 +255,50 @@
         $( "select" ).change( product_type );
         product_type();
 
-         // Add Setting
+        // Add Setting
         $(document).on('submit', '#setting-add-form', function(e) {
             e.preventDefault();
             var $this = $(this);
 
             var formData = new FormData(this);
             formData.append('action', 'setting_add_form');
+
+            $.ajax({
+                type: 'post',
+                url: ajaxurl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(data) {
+
+                },
+                complete: function(data) {
+
+                },
+                success: function(data) {
+                    console.log(data);
+
+                },
+                error: function(data) {
+                    console.log(data);
+
+                },
+
+            });
+
+        });
+
+        // Add SDK Generator
+        $(document).on('submit', '#sdk-generator-add-form', function(e) {
+            e.preventDefault();
+            var product_type = $('#product_type').val();
+            var select_product = $('#select_product').val();
+            if( (product_type == '') || (select_product== '') ){
+                return;
+            }
+            var $this = $(this);
+            var formData = new FormData(this);
+            formData.append('action', 'sdk_generator_add_form');
 
             $.ajax({
                 type: 'post',

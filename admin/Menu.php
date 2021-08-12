@@ -46,7 +46,7 @@ class LMFWPPT_Menu {
 
         add_submenu_page( $parent_slug, __( 'Settings', 'lmfwppt' ), __( 'Settings', 'lmfwppt' ), $capability, 'lmfwppt-settings', [ $this, 'settings_page' ] );
 
-        add_submenu_page( $parent_slug, __( 'Tools', 'lmfwppt' ), __( 'Tools', 'lmfwppt' ), $capability, 'lmfwppt-tools', [ $this, 'tools_page' ] );
+        add_submenu_page( $parent_slug, __( 'SDK Generator', 'lmfwppt' ), __( 'SDK Generator', 'lmfwppt' ), $capability, 'lmfwppt-sdk-generator', [ $this, 'sdk_generator_page' ] );
 
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
     }
@@ -269,7 +269,7 @@ class LMFWPPT_Menu {
      *
      * @return void
      */
-    public function tools_page() {
+    public function sdk_generator_page() {
         $template = __DIR__ . '/templates/tools/tools.php';
         
         if ( file_exists( $template ) ) {
