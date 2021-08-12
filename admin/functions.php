@@ -84,15 +84,3 @@ function lmfwppt_get_product_list( $product_type ){
      $items = $wpdb->get_results( $product_list);
      return $items;
 }
-
-
-// Get option data 
-function lmfwppt_get_option( $name = null ){
-    
-    if ( !$name ) {
-        return;
-    }
-
-    $settings = get_option( 'lmfwppt_settings' );
-    return isset( $settings[$name] ) ? $settings[$name] : "";
-}

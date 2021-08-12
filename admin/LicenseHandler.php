@@ -11,7 +11,6 @@ class LMFWPPT_LicenseHandler {
     function __construct() {
         
         add_action( 'wp_ajax_license_add_form', [ $this, 'license_add' ] );
-        add_action( 'wp_ajax_setting_add_form', [ $this, 'setting_add' ] );
         add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] );
         add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
@@ -20,8 +19,6 @@ class LMFWPPT_LicenseHandler {
             $this->get_wp_license_details( $_GET );
             exit;
         }
-
-      
         
     }
 
@@ -181,15 +178,6 @@ class LMFWPPT_LicenseHandler {
 
     }
 
-    // Setting add form action
-    function setting_add(){
-        if ( isset( $_POST['lmaction'] ) && $_POST['lmaction'] == "setting_add_form" ) {
-           $lmfwppt_settings = isset( $_POST['lmfwppt_settings'] ) ? $_POST['lmfwppt_settings'] : array();
-           update_option( 'lmfwppt_settings', $lmfwppt_settings );
-        }
-        die();
-    }
-
     // Select Package 
     function product_package() {
 
@@ -212,7 +200,6 @@ class LMFWPPT_LicenseHandler {
         die();
     }
 
-
     // License Key Genarate Ajax Hook
     function ajax_generate_license_key(){
         echo self::generate_license_key();
@@ -222,8 +209,8 @@ class LMFWPPT_LicenseHandler {
     // License Key Genarate function
     public static function generate_license_key() {
 
-        $prefix = lmfwppt_get_option('license_code_prefix');
-        $limit = lmfwppt_get_option('license_code_character_limit');
+        $prefix = LMFWPPT_SettingsHandler::lmfwppt_get_option('license_code_prefix');
+        $limit = LMFWPPT_SettingsHandler::lmfwppt_get_option('license_code_character_limit');
         $key = wp_generate_password( $limit, false, false );
         return $prefix.$key;
     }

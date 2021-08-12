@@ -90,6 +90,7 @@ final class LMFWPPT {
 		require_once( dirname( __FILE__ ) . '/admin/ProductsListTable.php' );
 		require_once( dirname( __FILE__ ) . '/admin/LicenseHandler.php' );
 		require_once( dirname( __FILE__ ) . '/admin/LicenseListTable.php' );
+		require_once( dirname( __FILE__ ) . '/admin/SettingsHandler.php' );
 
 	}
 

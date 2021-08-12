@@ -46,6 +46,8 @@ class LMFWPPT_Menu {
 
         add_submenu_page( $parent_slug, __( 'Settings', 'lmfwppt' ), __( 'Settings', 'lmfwppt' ), $capability, 'lmfwppt-settings', [ $this, 'settings_page' ] );
 
+        add_submenu_page( $parent_slug, __( 'Tools', 'lmfwppt' ), __( 'Tools', 'lmfwppt' ), $capability, 'lmfwppt-tools', [ $this, 'tools_page' ] );
+
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
     }
 
@@ -256,6 +258,19 @@ class LMFWPPT_Menu {
      */
     public function settings_page() {
         $template = __DIR__ . '/templates/settings/settings.php';
+        
+        if ( file_exists( $template ) ) {
+            include $template;
+        }
+    }
+
+    /**
+     * Handles the settings page
+     *
+     * @return void
+     */
+    public function tools_page() {
+        $template = __DIR__ . '/templates/tools/tools.php';
         
         if ( file_exists( $template ) ) {
             include $template;

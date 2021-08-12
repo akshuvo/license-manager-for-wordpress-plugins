@@ -186,39 +186,6 @@
 
         });
 
-         // Add Setting
-        $(document).on('submit', '#setting-add-form', function(e) {
-            e.preventDefault();
-            var $this = $(this);
-
-            var formData = new FormData(this);
-            formData.append('action', 'setting_add_form');
-
-            $.ajax({
-                type: 'post',
-                url: ajaxurl,
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function(data) {
-
-                },
-                complete: function(data) {
-
-                },
-                success: function(data) {
-                    console.log(data);
-
-                },
-                error: function(data) {
-                    console.log(data);
-
-                },
-
-            });
-
-        });
-
         // Add package
         $(document).on('change', '.products_list', function(e){
             $("#lmfwppt_license_package").show();
@@ -287,6 +254,39 @@
         }
         $( "select" ).change( product_type );
         product_type();
+
+         // Add Setting
+        $(document).on('submit', '#setting-add-form', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+
+            var formData = new FormData(this);
+            formData.append('action', 'setting_add_form');
+
+            $.ajax({
+                type: 'post',
+                url: ajaxurl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(data) {
+
+                },
+                complete: function(data) {
+
+                },
+                success: function(data) {
+                    console.log(data);
+
+                },
+                error: function(data) {
+                    console.log(data);
+
+                },
+
+            });
+
+        });
 
 	});
 })(jQuery);
