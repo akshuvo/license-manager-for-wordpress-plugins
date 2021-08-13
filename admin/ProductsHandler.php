@@ -446,6 +446,19 @@ class LMFWPPT_ProductsHandler {
         return $result;
     }
 
+    // Get package value 
+    public static function get_product_details_by_package_id( $package_id = null ){
+
+        if( !$package_id ) {
+            return;
+        }
+
+        global $wpdb;
+        $get_product = $wpdb->get_row( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}lmfwppt_license_packages as lp INNER JOIN {$wpdb->prefix}lmfwppt_products as p ON p.id = lp.product_id WHERE lp.package_id = %s", $package_id), ARRAY_A );
+
+        return $get_product;
+    }
+
 }
 
 new LMFWPPT_ProductsHandler();

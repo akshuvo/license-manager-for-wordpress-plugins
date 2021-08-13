@@ -7,15 +7,13 @@
 
 
 <div class="wrap">
-   <h1 class="wp-heading-inline"><?php _e( 'Settings Page', 'lmfwppt' ); ?></h1>
+   <h1 class="wp-heading-inline"><?php _e( 'License Manager Settings', 'lmfwppt' ); ?></h1>
 </div>
 
 
 <div class="wrap">
-   <h1><?php _e( 'Add Setting', 'lmfwppt' ); ?></h1>
 
       <form action="" method="post" id="setting-add-form">
-         
          <table class="form-table" role="presentation">
             <tbody>
                <tr>

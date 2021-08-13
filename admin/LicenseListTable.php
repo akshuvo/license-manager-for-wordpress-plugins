@@ -8,6 +8,7 @@ if( !class_exists('WP_List_Table') ){
  * Product List Table Class
  * 
 */
+
 class LMFWPPT_LicenseListTable extends \WP_List_Table{
 
 	function __construct(){
@@ -22,12 +23,13 @@ class LMFWPPT_LicenseListTable extends \WP_List_Table{
 	public function get_columns(){
 		return [
 			'cb' => "<input type='checkbox'/>",
-			'id' => __('ID', 'lmfwppt'),
 			'license_key' => __('License Key','lmfwppt'),
-			'package_id' => __('Package Id','lmfwppt'),
+			'license_details' => __('License Info','lmfwppt'),
 			'order_id' => __('Order Id','lmfwppt'),
-			'dated' => __('Date','lmfwppt')
+			'end_date' => __('Expires','lmfwppt'),
+			'dated' => __('Date','lmfwppt'),
 		];
+
 	}
 
 	/**
@@ -79,6 +81,22 @@ class LMFWPPT_LicenseListTable extends \WP_List_Table{
 
 	protected function column_dated($item){
 		return date('j F Y',strtotime($item->dated));
+	}
+
+	protected function column_end_date($item){
+		return date('j F Y',strtotime($item->end_date));
+	}
+
+	public function column_license_details($item){
+		$package_id = LMFWPPT_ProductsHandler::get_product_details_by_package_id($item->package_id);
+		
+		$package_details = '<a href="admin.php?page=license-manager-wppt-licenses&action=edit&id="'.$item->id.'>'.$package_id['name'].' ('.$package_id['label'].')'.'</a>';
+		 
+		$package_details .= '<ul class="package_details">
+					<li>Domain Limit: '.$package_id['domain_limit'].'</li>
+					<li>Product Type: '.$package_id['product_type'].'</li>
+				</ul';
+		return $package_details; 
 	}
 
 	public function prepare_items( ){

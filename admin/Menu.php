@@ -131,7 +131,7 @@ class LMFWPPT_Menu {
                 'id'    => $parent_slug.'-license',
                 'parent' => $parent_slug,
                 'group'  => null,
-                'title' => __( 'License', 'lmfwppt' ),
+                'title' => __( 'Licenses', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=license-manager-wppt-licenses'),
                 'meta' => [
                     'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover

@@ -164,3 +164,8 @@ span.delete_field:hover{
 .opt-plugins{
     display: none;
 }
+
+.package_details li{
+    color: #777;
+    text-transform: capitalize;
+}
