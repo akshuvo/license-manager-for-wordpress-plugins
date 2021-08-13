@@ -28,16 +28,11 @@
                   </td>
                </tr>
                 
-               <tr>
-                  <th>
-                     <div class="lmwppt-inner">
-                        <input type="hidden" name="lmaction" value="sdk_generator_add_form">
-                        <?php submit_button( __( 'Generate', 'lmfwppt' ), 'primary' ); ?>
-                     </div>
-                  </th>
-               </tr>
+              
             </tbody>
-         </table>      
+         </table>
+         <input type="hidden" name="lmaction" value="sdk_generator_add_form">
+         <?php submit_button( __( 'Generate', 'lmfwppt' ), 'primary' ); ?> 
       </form>
 
 </div>

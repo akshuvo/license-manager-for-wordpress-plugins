@@ -26,16 +26,10 @@
                   <th scope="row"><label for="license_code_character_limit">License Code Character Limit</label></th>
                   <td><input type="text" name="lmfwppt_settings[license_code_character_limit]" id="license_code_character_limit" class="regular-text" placeholder="<?php esc_attr_e( 'License Code Character Limit', 'lmfwppt' ); ?>" value="<?php echo $character_limit; ?>"></td>
                </tr>
-               <tr>
-                  <th>
-                     <div class="lmwppt-inner-card lmfwppt-buttons card-shameless">
-                        <input type="hidden" name="lmaction" value="setting_add_form">
-                        <?php submit_button( __( 'Save', 'lmfwppt' ), 'primary' ); ?>
-                     </div>
-                  </th>
-               </tr>
             </tbody>
-         </table>      
+         </table>
+         <input type="hidden" name="lmaction" value="setting_add_form">
+         <?php submit_button( __( 'Save', 'lmfwppt' ), 'primary' ); ?>
       </form>
 
 </div>
