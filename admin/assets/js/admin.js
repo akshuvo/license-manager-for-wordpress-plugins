@@ -327,7 +327,6 @@
         $(document).on('change', '.product_type', function(e){
              
             var product_type = $(this).val();
-            console.log(product_type);
             if(product_type == 'theme'){
                 $('.opt-themes').show();
                 $('.opt-plugins').hide();

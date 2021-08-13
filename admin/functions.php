@@ -68,19 +68,14 @@ function lmfwppt_api_url(){
 // Get Product list
 function lmfwppt_get_product_list( $product_type ){
 
+    if ( !$product_type ) {
+        return;
+    }
+
     global $wpdb;
-    
-    $args = '';
-    $defaults = [
-        'number' => 20,
-        'product_type' => $product_type
-    ];
 
-    $args = wp_parse_args( $args, $defaults );
-     $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s 
-        LIMIT %d",
-        $args['product_type'],$args['number']);
+    $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s ", $product_type );
 
-     $items = $wpdb->get_results( $product_list);
+     $items = $wpdb->get_results( $product_list );
      return $items;
 }
