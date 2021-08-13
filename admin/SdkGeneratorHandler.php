@@ -19,11 +19,10 @@ class LMFWPPT_SdkGeneratorHandler{
    function sdkgenerator_add(){
       if ( isset( $_POST['lmaction'] ) && $_POST['lmaction'] == "sdk_generator_add_form" ) {
         	$product_type =  $_POST['product_type'];
-        	$select_product_theme = $_POST['select_product_theme'];
-        	$select_product_plugin = $_POST['select_product_plugin'];
+        	$select_product = $_POST['select_product'];
+        	 
         	echo $product_type;
-        	echo $select_product_theme;
-        	echo $select_product_plugin;
+        	echo $select_product;
         }
       die();
    }

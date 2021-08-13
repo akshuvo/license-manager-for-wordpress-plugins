@@ -323,6 +323,22 @@
 
         });
 
+        // tools page
+        $(document).on('change', '.product_type', function(e){
+             
+            var product_type = $(this).val();
+            console.log(product_type);
+            if(product_type == 'theme'){
+                $('.opt-themes').show();
+                $('.opt-plugins').hide();
+
+            }else if(product_type == 'plugin'){
+                $('.opt-plugins').show();
+                $('.opt-themes').hide();
+            }
+
+        });
+
 	});
 })(jQuery);
 

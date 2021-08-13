@@ -153,6 +153,14 @@ span.delete_field:hover{
 .lmfwppt_theme_products{
     display: none;
 }
+
 .lmfwppt_plugin_products{
+    display: none;
+}
+
+.opt-themes{
+     display: none;
+}
+.opt-plugins{
     display: none;
 }
