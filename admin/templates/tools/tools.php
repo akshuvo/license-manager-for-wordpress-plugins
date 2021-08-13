@@ -10,7 +10,7 @@
                <tr>
                   <th><label for="product_type"><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></label></th>
                   <td>
-                     <select name="product_type" class="product_type" id="product_type" required>
+                     <select name="product_type" class="product_type" id="product_type">
                       <option value=" " selected>Select Product Type</option>
                       <option value="Theme"><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
                       <option value="Plugin"><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
@@ -20,7 +20,7 @@
                <tr class="lmfwppt_theme_products">
                   <th><label for="product_theme_list"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
                   <td>
-                   <select name="select_product" class="select_product" required>
+                   <select name="select_product_theme" class="select_product">
                         <option value="" selected>Select Product</option>
                         <?php
                            $items = lmfwppt_get_product_list("theme");
@@ -35,7 +35,7 @@
                <tr class="lmfwppt_plugin_products">
                   <th><label for="product_plugin_list"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
                   <td>
-                     <select name="select_product" class="select_product" required>
+                     <select name="select_product_plugin" class="select_product">
                             <option value="" selected>Select Product</option>
                             <?php
                                 $items = lmfwppt_get_product_list("plugin");

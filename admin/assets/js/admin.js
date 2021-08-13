@@ -239,15 +239,14 @@
 
         function product_type() {
             var singleValues = $( "#product_type" ).val();
-             
-            $(".lmfwppt_theme_products").hide();
-            $(".lmfwppt_plugin_products").hide();
             if(singleValues == "Theme"){
                 $(".lmfwppt_theme_products").show();
+                $(".lmfwppt_plugin_products").hide();
                  
             } 
             else if(singleValues == "Plugin"){
                 $(".lmfwppt_plugin_products").show();
+                $(".lmfwppt_theme_products").hide();
                  
             }
         }

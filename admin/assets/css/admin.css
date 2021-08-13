@@ -149,3 +149,10 @@ span.delete_field:hover{
 .section-content label {
     font-weight: 600;
 }
+
+.lmfwppt_theme_products{
+    display: none;
+}
+.lmfwppt_plugin_products{
+    display: none;
+}
