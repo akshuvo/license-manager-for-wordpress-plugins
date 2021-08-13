@@ -78,7 +78,7 @@ if ( $end_date ) {
                     </div>
                     
                     <!-- Theme Product List -->
-                    <div class="lmfwppt-form-field" id="lmfwppt_theme_products">
+                    <div class="lmfwppt-form-field lmfwppt_theme_products">
                         <label for="product_theme_list"><?php esc_html_e( 'Theme Product List', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_theme_list]" class="products_list" id="product_theme_list">
                             <option value=" " selected>Select Product</option>
@@ -91,10 +91,9 @@ if ( $end_date ) {
 
                         </select>
                     </div>
-                    
 
                     <!-- Plugin Product List -->
-                    <div class="lmfwppt-form-field" id="lmfwppt_plugin_products">
+                    <div class="lmfwppt-form-field lmfwppt_plugin_products">
                         <label for="product_plugin_list"><?php esc_html_e( 'Plugin Product List', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_plugin_list]" class="products_list" id="product_plugin_list">
                             <option value=" " selected>Select Product</option>

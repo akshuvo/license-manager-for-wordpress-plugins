@@ -10,24 +10,45 @@
                <tr>
                   <th><label for="product_type"><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></label></th>
                   <td>
-                     <select name="product_type" id="product_type" required>
-                        <option value="" selected>Select Product Type</option>
-                        <option value="Theme"><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
-                        <option value="Plugin"><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
-                     </select>
+                     <select name="product_type" class="product_type" id="product_type" required>
+
+                      <option value=" " selected>Select Product Type</option>
+
+                      <option value="Theme"><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
+
+                      <option value="Plugin"><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
+                  </select>
                   </td>
                </tr>
-               <tr>
-                  <th><label for="product_type"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
+               <tr class="lmfwppt_theme_products">
+                  <th><label for="product_theme_list"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
                   <td>
-                     <select name="select_product" id="select_product" required>
+                   <select name="select_product" class="select_product">
                         <option value="" selected>Select Product</option>
-                        <option value="product_1"><?php esc_html_e( 'Product-1', 'lmfwppt' ); ?></option>
-                        <option value="product_2"><?php esc_html_e( 'Product-2', 'lmfwppt' ); ?></option>
+                        <?php
+                           $items = lmfwppt_get_product_list("theme");
+                           foreach ($items as $products_list):?>
+                                 
+                        <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
+                     <?php endforeach; ?>
+
                      </select>
                   </td>
                </tr>
-                
+               <tr class="lmfwppt_plugin_products">
+                  <th><label for="product_plugin_list"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
+                  <td>
+                     <select name="select_product" class="select_product">
+                            <option value="" selected>Select Product</option>
+                            <?php
+                                $items = lmfwppt_get_product_list("plugin");
+                                foreach ($items as $products_list):?>
+                                    
+                            <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
+                        <?php endforeach; ?>
+                     </select>
+                  </td>
+               </tr>
               
             </tbody>
          </table>
@@ -36,3 +57,4 @@
       </form>
 
 </div>
+

@@ -239,16 +239,15 @@
 
         function product_type() {
             var singleValues = $( "#product_type" ).val();
-            var theme_license_id = $( "#product_theme_list" ).val();
-            var plugin_license_id = $( "#product_plugin_list" ).val();
-            $("div#lmfwppt_theme_products").hide();
-            $("div#lmfwppt_plugin_products").hide();
+             
+            $(".lmfwppt_theme_products").hide();
+            $(".lmfwppt_plugin_products").hide();
             if(singleValues == "Theme"){
-                $("div#lmfwppt_theme_products").show();
+                $(".lmfwppt_theme_products").show();
                  
             } 
             else if(singleValues == "Plugin"){
-                $("div#lmfwppt_plugin_products").show();
+                $(".lmfwppt_plugin_products").show();
                  
             }
         }
@@ -291,9 +290,9 @@
         // Add SDK Generator
         $(document).on('submit', '#sdk-generator-add-form', function(e) {
             e.preventDefault();
-            var product_type = $('#product_type').val();
-            var select_product = $('#select_product').val();
-            if( (product_type == '') || (select_product== '') ){
+            var product_type = $('.product_type').val();
+            var select_product = $('.select_product').val();
+            if( (product_type == '') || (select_product == '') ){
                 return;
             }
             var $this = $(this);
