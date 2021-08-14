@@ -170,10 +170,12 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function(data) {
-
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
                 },
                 complete: function(data) {
-
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
                     console.log(data);
@@ -270,10 +272,12 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function(data) {
-
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
                 },
                 complete: function(data) {
-
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
                     console.log(data);
@@ -307,10 +311,12 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function(data) {
-
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
                 },
                 complete: function(data) {
-
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
                     console.log(data);

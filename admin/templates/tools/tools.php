@@ -40,8 +40,11 @@
               
             </tbody>
          </table>
-         <input type="hidden" name="lmaction" value="sdk_generator_add_form">
-         <?php submit_button( __( 'Generate', 'lmfwppt' ), 'primary' ); ?>  <span class="spinner"></span>
+         <div class="submit_btn_area"> 
+            <input type="hidden" name="lmaction" value="sdk_generator_add_form">
+            <?php submit_button( __( 'Generate', 'lmfwppt' ), 'primary' ); ?> 
+            <span class="spinner"></span>
+         </div>
       </form>
 
 </div>

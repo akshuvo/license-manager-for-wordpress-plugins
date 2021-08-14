@@ -134,7 +134,10 @@ if ( $end_date ) {
                 <?php endif; ?>
                 
                 <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>
-                <?php submit_button( $submit_button_label, 'primary', 'add_license' ); ?> <span class="spinner"></span>
+                <div class="submit_btn_area"> 
+                    <?php submit_button( $submit_button_label, 'primary', 'add_license' ); ?> 
+                    <span class="spinner"></span>
+                </div>    
             </div>
         </form>
 

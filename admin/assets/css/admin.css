@@ -170,7 +170,18 @@ span.delete_field:hover{
     text-transform: capitalize;
     margin: 0;
 }
-
 .w-100 {
     width: 100%;
+}
+.spinner {
+    float: left;
+    margin-top: 0;
+}
+p.submit {
+    margin: 0;
+    padding: 0;
+}
+.submit_btn_area{
+    display: flex;
+    align-items: center;
 }

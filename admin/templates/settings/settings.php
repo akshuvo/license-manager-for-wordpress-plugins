@@ -23,7 +23,10 @@
             </tbody>
          </table>
          <input type="hidden" name="lmaction" value="setting_add_form">
-         <?php submit_button( __( 'Save', 'lmfwppt' ), 'primary' ); ?> <span class="spinner"></span>
+         <div class="submit_btn_area"> 
+            <?php submit_button( __( 'Save', 'lmfwppt' ), 'primary' ); ?> 
+            <span class="spinner"></span>
+         </div>
       </form>
 
 </div>
