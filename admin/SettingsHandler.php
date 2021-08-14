@@ -25,7 +25,7 @@ class LMFWPPT_SettingsHandler{
     }
 
     // Get option data 
-	function lmfwppt_get_option( $name = null ){
+	public static function lmfwppt_get_option( $name = null ){
 	    
 	    if ( !$name ) {
 	        return;

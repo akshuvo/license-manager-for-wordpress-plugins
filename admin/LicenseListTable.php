@@ -63,12 +63,15 @@ class LMFWPPT_LicenseListTable extends \WP_List_Table{
 	// Default column Customize
 	public function column_license_key($item){
 		$actions = [];
+
+		$actions['id']   = sprintf( '<span class="id">ID: %s </span>', $item->id );
+
 		$actions['edit']   = sprintf( '<a href="%s" title="%s">%s</a>', admin_url( 'admin.php?page=license-manager-wppt-licenses&action=edit&id=' . $item->id ), $item->id, __( 'Edit', 'license-manager-wppt' ), __( 'Edit', 'license-manager-wppt' ) );
 
         $actions['delete'] = sprintf( '<a href="%s" class="submitdelete" onclick="return confirm(\'Are you sure?\');" title="%s">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=lmfwppt-delete-license&id=' . $item->id ), 'lmfwppt-delete-license' ), $item->id, __( 'Delete', 'license-manager-wppt' ), __( 'Delete', 'license-manager-wppt' ) );
 
 		return sprintf(
-			'<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url('admin.php?page=license-manager-wppt-licenses&action=edit&id=' . $item->id ), $item->license_key, $this->row_actions($actions)
+			'<input class="w-100" type="text" value="%1$s" readonly/> %2$s', $item->license_key, $this->row_actions($actions)
 		);
 
 	}
@@ -89,8 +92,8 @@ class LMFWPPT_LicenseListTable extends \WP_List_Table{
 
 	public function column_license_details($item){
 		$package_id = LMFWPPT_ProductsHandler::get_product_details_by_package_id($item->package_id);
-		
-		$package_details = '<a href="admin.php?page=license-manager-wppt-licenses&action=edit&id="'.$item->id.'>'.$package_id['name'].' ('.$package_id['label'].')'.'</a>';
+	
+		$package_details = '<a href="admin.php?page=license-manager-wppt-licenses&action=edit&id='.$package_id['product_id'].'">'.$package_id['name'].' ('.$package_id['label'].')'.'</a>';
 		 
 		$package_details .= '<ul class="package_details">
 					<li>Domain Limit: '.$package_id['domain_limit'].'</li>

@@ -13,6 +13,8 @@ $product_defaults_args = array (
 $get_product = array();
 $get_packages = null;
 
+$submit_button_label = __( 'Add License', 'lmfwppt' );
+
 if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id'] ) ) {
     $license_id = intval( $_GET['id'] );
 
@@ -21,6 +23,8 @@ if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id']
 
     // Get packages data
     $get_packages = LMFWPPT_ProductsHandler::get_packages( $license_id );
+
+    $submit_button_label = __( 'Edit License', 'lmfwppt' );
 
 }
 
@@ -130,7 +134,7 @@ if ( $end_date ) {
                 <?php endif; ?>
                 
                 <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>
-                <?php submit_button( __( 'Add License', 'lmfwppt' ), 'primary', 'add_license' ); ?>
+                <?php submit_button( $submit_button_label, 'primary', 'add_license' ); ?>
             </div>
         </form>
 

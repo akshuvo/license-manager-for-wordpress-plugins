@@ -8,10 +8,6 @@
 
 <div class="wrap">
    <h1 class="wp-heading-inline"><?php _e( 'License Manager Settings', 'lmfwppt' ); ?></h1>
-</div>
-
-
-<div class="wrap">
 
       <form action="" method="post" id="setting-add-form">
          <table class="form-table" role="presentation">

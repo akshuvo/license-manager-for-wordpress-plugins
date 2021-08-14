@@ -19,6 +19,8 @@ $product_defaults_args = array (
 $get_product = array();
 $get_packages = null;
 
+$submit_button_label = __( 'Add Product', 'lmfwppt' );
+
 if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id'] ) ) {
     $product_id = intval( $_GET['id'] );
 
@@ -28,7 +30,7 @@ if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id']
     // Get packages data
     $get_packages = LMFWPPT_ProductsHandler::get_packages( $product_id );
 
-
+    $submit_button_label = __( 'Edit Product', 'lmfwppt' );
 
 }
 
@@ -152,7 +154,7 @@ $sections_arr = unserialize($sections);
             <div class="lmwppt-inner-card">
                 <div class="lmfwppt-form-field">
                     <label for="author"><?php esc_html_e( 'Author', 'lmfwppt' ); ?></label>
-                    <input type="text" name="lmfwppt[author]" id="author" class="regular-text product_name_input" placeholder="Author Name" value="<?php echo esc_attr( $author ); ?>" required>
+                    <input type="text" name="lmfwppt[author]" id="author" class="regular-text product_name_input" placeholder="Author Name" value="<?php echo esc_attr( $author ); ?>">
                 </div>
             </div>
 
@@ -165,7 +167,7 @@ $sections_arr = unserialize($sections);
                 <?php endif; ?>
                 
                 <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>
-                <?php submit_button( __( 'Add Product License', 'lmfwppt' ), 'primary', 'submit_product_license' ); ?>
+                <?php submit_button( $submit_button_label, 'primary', 'submit_product_license' ); ?>
             </div>
         </form>
 
