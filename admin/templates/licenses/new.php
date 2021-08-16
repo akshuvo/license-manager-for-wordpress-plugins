@@ -130,7 +130,7 @@ if ( $end_date ) {
                 <input type="hidden" name="lmfwppt[created_by]" value="<?php _e( get_current_user_id() ); ?>">
                 
                 <?php if( isset( $license_id ) ) : ?>
-                    <input type="hidden" name="lmfwppt[license_id]" value="<?php _e( $license_id ); ?>">
+                    <input class="lmfwppt_edit_id" type="hidden" name="lmfwppt[license_id]" value="<?php _e( $license_id ); ?>">
                 <?php endif; ?>
                 
                 <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>

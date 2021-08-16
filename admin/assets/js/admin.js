@@ -126,6 +126,9 @@
             var formData = new FormData(this);
             formData.append('action', 'product_add_form');
 
+            // Get Product type
+            let productType = jQuery('#product_type').val();
+
             $.ajax({
                 type: 'post',
                 url: ajaxurl,
@@ -143,7 +146,13 @@
                     $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
-                    $(document).trigger("lmfwppt_notice", ['Product updated', 'success']);
+                    // Success Message and Redirection
+                    if ( jQuery('.lmfwppt_edit_id').val() ) {
+                        $(document).trigger("lmfwppt_notice", ['Product updated successfully.', 'success']);
+                    } else {
+                        $(document).trigger("lmfwppt_notice", ['Product added successfully. Redirecting...', 'success']);
+                        window.location = '/wp-admin/admin.php?page=license-manager-wppt-'+productType+'s&action=edit&id='+data+'&message=1';
+                    }
 
                 },
                 error: function(data) {
@@ -179,7 +188,13 @@
                     $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
-                    $(document).trigger("lmfwppt_notice", ['Licenses updated', 'success']);
+                    // Success Message and Redirection
+                    if ( jQuery('.lmfwppt_edit_id').val() ) {
+                        $(document).trigger("lmfwppt_notice", ['License updated successfully.', 'success']);
+                    } else {
+                        $(document).trigger("lmfwppt_notice", ['License added successfully. Redirecting...', 'success']);
+                        window.location = '/wp-admin/admin.php?page=license-manager-wppt-licenses&action=edit&id='+data+'&message=1';
+                    }
 
                 },
                 error: function(data) {

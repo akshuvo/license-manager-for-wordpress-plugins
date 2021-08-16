@@ -148,7 +148,9 @@ class LMFWPPT_LicenseHandler {
    
         if ( isset( $_POST['lmaction'] ) && $_POST['lmaction'] == "license_add_form" ) {
 
-            $this->create_license( $_POST['lmfwppt'] );
+            $license_id = $this->create_license( $_POST['lmfwppt'] );
+
+            echo $license_id;
 
         }
 

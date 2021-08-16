@@ -237,6 +237,8 @@ class LMFWPPT_ProductsHandler {
                     $this->create_package( $package, $product_id );
                 }
             }
+
+            echo $product_id;
         }
 
         die();

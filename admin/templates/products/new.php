@@ -163,7 +163,7 @@ $sections_arr = unserialize($sections);
                 <input type="hidden" name="lmfwppt[created_by]" value="<?php _e( get_current_user_id() ); ?>">
                 
                 <?php if( isset( $product_id ) ) : ?>
-                    <input type="hidden" name="lmfwppt[product_id]" value="<?php _e( $product_id ); ?>">
+                    <input class="lmfwppt_edit_id" type="hidden" name="lmfwppt[product_id]" value="<?php _e( $product_id ); ?>">
                 <?php endif; ?>
                 
                 <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>
