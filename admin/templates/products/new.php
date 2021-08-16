@@ -170,9 +170,10 @@ $sections_arr = unserialize($sections);
                 <div class="submit_btn_area"> 
                     <?php submit_button( $submit_button_label, 'primary', 'submit_product_license' ); ?> 
                     <span class="spinner"></span>
-                </div>    
+                </div>   
+                <div class="lmfwppt-notices"></div> 
             </div>
-            <div class="lmfwppt-notices"></div>
+            
         </form>
 
     </div>
