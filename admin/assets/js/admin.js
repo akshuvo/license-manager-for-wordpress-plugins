@@ -354,8 +354,10 @@
                 $('.lmfwppt-notices').html('');
                     return;
             }
-            var notice_html = '<div class="notice notice-alt is-dismissible notice-'+type+'"><p>'+notice+'</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+            var notice_html = '<div class="notice notice-alt is-dismissible notice-'+type+'"><p>'+notice+'</p></div>';
             $('.lmfwppt-notices').html(notice_html);
+            jQuery(document).trigger('wp-updates-notice-added');
+        
         });
 
 	});
