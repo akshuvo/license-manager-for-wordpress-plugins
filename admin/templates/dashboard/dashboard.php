@@ -4,7 +4,7 @@
  
 
 <div class="lmwppt-main-section">
-
+   <a href="http://testsite.local/wp-admin/admin.php?page=license-manager-wppt-plugins">
    <div class="lmwppt-inner">
       <div class="lmwppt-content">
 
@@ -20,7 +20,8 @@
          <h1><?php echo LMFWPPT_ProductsListTable::product_count('plugin'); ?></h1>
       </div>
    </div>
-
+   </a>
+   <a href="http://testsite.local/wp-admin/admin.php?page=license-manager-wppt-themes">
    <div class="lmwppt-inner">
       <div class="lmwppt-content">
 
@@ -36,7 +37,8 @@
          <h1><?php echo LMFWPPT_ProductsListTable::product_count('theme'); ?></h1>
       </div>
    </div>
-   
+   </a>
+   <a href="http://testsite.local/wp-admin/admin.php?page=license-manager-wppt-licenses">
    <div class="lmwppt-inner">
       <div class="lmwppt-content">
          <div class="lmwppt-title">
@@ -50,6 +52,6 @@
          <h1><?php echo LMFWPPT_LicenseListTable::license_count(); ?></h1>
       </div>
    </div>
-
+   </a>
 </div>
 
