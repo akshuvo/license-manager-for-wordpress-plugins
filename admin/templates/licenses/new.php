@@ -139,6 +139,7 @@ if ( $end_date ) {
                     <span class="spinner"></span>
                 </div>    
             </div>
+            <div class="lmfwppt-notices"></div>
         </form>
 
     </div>

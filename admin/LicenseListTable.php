@@ -98,7 +98,7 @@ class LMFWPPT_LicenseListTable extends \WP_List_Table{
 		$package_details .= '<ul class="package_details">
 					<li>Domain Limit: '.$package_id['domain_limit'].'</li>
 					<li>Product Type: '.$package_id['product_type'].'</li>
-				</ul';
+				</ul>';
 		return $package_details; 
 	}
 
