@@ -137,9 +137,10 @@ if ( $end_date ) {
                 <div class="submit_btn_area"> 
                     <?php submit_button( $submit_button_label, 'primary', 'add_license' ); ?> 
                     <span class="spinner"></span>
-                </div>    
+                </div>  
+                <div class="lmfwppt-notices"></div>  
             </div>
-            <div class="lmfwppt-notices"></div>
+            
         </form>
 
     </div>

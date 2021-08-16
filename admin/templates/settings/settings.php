@@ -18,7 +18,7 @@
                </tr>
                <tr>
                   <th scope="row"><label for="license_code_character_limit">License Code Character Limit</label></th>
-                  <td><input type="text" name="lmfwppt_settings[license_code_character_limit]" id="license_code_character_limit" class="regular-text" placeholder="<?php esc_attr_e( 'License Code Character Limit', 'lmfwppt' ); ?>" value="<?php echo $character_limit; ?>"></td>
+                  <td><input type="number" name="lmfwppt_settings[license_code_character_limit]" id="license_code_character_limit" class="regular-text" placeholder="<?php esc_attr_e( 'License Code Character Limit', 'lmfwppt' ); ?>" value="<?php echo $character_limit; ?>"></td>
                </tr>
             </tbody>
          </table>
