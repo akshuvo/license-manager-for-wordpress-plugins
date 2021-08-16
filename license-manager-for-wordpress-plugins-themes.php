@@ -143,6 +143,8 @@ final class LMFWPPT {
 	    }
 
 	    $ver = current_time( 'timestamp' );
+	    
+	    wp_enqueue_media();
 
 	    wp_enqueue_style( 'lmfwppt-admin-styles', LMFWPPT_PLUGIN_URL . 'admin/assets/css/admin.css', null, $ver );
 	    wp_enqueue_script( 'lmwppt-admin-scripts', LMFWPPT_PLUGIN_URL . 'admin/assets/js/admin.js', array('jquery'), $ver );

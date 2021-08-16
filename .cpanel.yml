@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=//home/wpcuypuf/addonmaster.com/wp-content/plugins/license-manager-for-wordpress-plugins-themes/
+    - /bin/cp -R * $DEPLOYPATH
+    

@@ -106,7 +106,7 @@ $sections_arr = unserialize($sections);
                         <label for="download_link"><?php esc_html_e( 'File URL', 'lmfwppt' ); ?></label>
                         <div class="lmfwppt-file-field">
                             <input type="text" name="lmfwppt[download_link]" id="download_link" class="regular-text" placeholder="<?php esc_attr_e( 'URL of the Theme/Plugin file', 'lmfwppt' ); ?>" value="<?php echo esc_attr( $download_link ); ?>">
-                            <button class="button" type="button" id="download_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
+                            <button title="Select Theme/Plugin ZIP File" class="button trigger_media_frame" data-push_selector="#download_link"  type="button" id="download_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
                         </div>
                     </div>
 
@@ -128,14 +128,14 @@ $sections_arr = unserialize($sections);
 
                     <div class="lmfwppt-form-field">
                         <div class="lmfwppt-file-field">
-                            <input type="text" name="lmfwppt[banners][low]" id="banners_low" class="regular-text" placeholder="<?php esc_attr_e( 'Low', 'lmfwppt' ); ?>" value="<?php echo $low; ?>">
-                            <button class="button" type="button" id="banners_low_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
+                            <input type="text" name="lmfwppt[banners][low]" id="banner_low" class="regular-text" placeholder="<?php esc_attr_e( 'Low', 'lmfwppt' ); ?>" value="<?php echo $low; ?>">
+                            <button title="Select Banner Image" class="button trigger_media_frame" data-push_selector="#banner_low" type="button" id="banners_low_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
                         </div>
                     </div> 
                     <div class="lmfwppt-form-field">
                         <div class="lmfwppt-file-field">
-                            <input type="text" name="lmfwppt[banners][high]" id="banners_high" class="regular-text" placeholder="<?php esc_attr_e( 'High', 'lmfwppt' ); ?>" value="<?php echo $high; ?>">
-                            <button class="button" type="button" id="banners_high_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
+                            <input type="text" name="lmfwppt[banners][high]" id="banner_high" class="regular-text" placeholder="<?php esc_attr_e( 'High', 'lmfwppt' ); ?>" value="<?php echo $high; ?>">
+                            <button title="Select Banner Image" class="button trigger_media_frame" data-push_selector="#banner_high" type="button" id="banners_high_link_button"><?php esc_html_e( 'Select File', 'lmfwppt' ); ?></button>
                         </div>
                     </div> 
 

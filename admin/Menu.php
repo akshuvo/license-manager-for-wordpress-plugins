@@ -46,6 +46,7 @@ class LMFWPPT_Menu {
 
         add_submenu_page( $parent_slug, __( 'Settings', 'lmfwppt' ), __( 'Settings', 'lmfwppt' ), $capability, 'lmfwppt-settings', [ $this, 'settings_page' ] );
 
+
         add_submenu_page( $parent_slug, __( 'SDK Generator', 'lmfwppt' ), __( 'SDK Generator', 'lmfwppt' ), $capability, 'lmfwppt-sdk-generator', [ $this, 'sdk_generator_page' ] );
 
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
