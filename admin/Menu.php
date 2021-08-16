@@ -46,12 +46,20 @@ class LMFWPPT_Menu {
 
         add_submenu_page( $parent_slug, __( 'Settings', 'lmfwppt' ), __( 'Settings', 'lmfwppt' ), $capability, 'lmfwppt-settings', [ $this, 'settings_page' ] );
 
+
+        add_submenu_page( $parent_slug, __( 'SDK Generator', 'lmfwppt' ), __( 'SDK Generator', 'lmfwppt' ), $capability, 'lmfwppt-sdk-generator', [ $this, 'sdk_generator_page' ] );
+
+        add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
     }
+
+
 
 
     // Admin Bar Menu
     function admin_bar_menus( WP_Admin_Bar $wp_admin_bar ) {
-        if ( $this->admin_menus == "toplevel_page_license-manager-wppt"  ) {
+        $page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ): null;
+
+        if ( $page == "license-manager-wppt" || $page == "license-manager-wppt-plugins" || $page == "license-manager-wppt-themes" || $page == "license-manager-wppt-licenses" || $page == "lmfwppt-settings" || $page == "lmfwppt-sdk-generator" && $this->admin_menus == "toplevel_page_license-manager-wppt"  ) {
         
 
             if ( !is_admin_bar_showing() )
@@ -82,7 +90,7 @@ class LMFWPPT_Menu {
                 'title' => __( 'Plugins', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=license-manager-wppt-plugins'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
                 ]
             ) );
 
@@ -93,7 +101,7 @@ class LMFWPPT_Menu {
                 'title' => __( 'Add New', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=license-manager-wppt-plugins&action=new'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
                 ]
             ) );
 
@@ -104,7 +112,7 @@ class LMFWPPT_Menu {
                 'title' => __( 'Themes', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=license-manager-wppt-themes'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
                 ]
             ) );
 
@@ -115,7 +123,7 @@ class LMFWPPT_Menu {
                 'title' => __( 'Add New', 'lmfwppt' ),
                 'href' => admin_url('admin.php?page=license-manager-wppt-themes&action=new'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ),
+                    'title' => __( 'Menu Title', 'lmfwppt' ),
                 ]
 
             ) );
@@ -124,10 +132,10 @@ class LMFWPPT_Menu {
                 'id'    => $parent_slug.'-license',
                 'parent' => $parent_slug,
                 'group'  => null,
-                'title' => __( 'License', 'lmfwppt' ),
+                'title' => __( 'Licenses', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=license-manager-wppt-licenses'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
                 ]
             ) );
 
@@ -138,7 +146,7 @@ class LMFWPPT_Menu {
                 'title' => __( 'Add New', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=license-manager-wppt-licenses&action=new'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
                 ]
             ) );
 
@@ -149,13 +157,21 @@ class LMFWPPT_Menu {
                 'title' => __( 'Setting', 'lmfwppt' ),
                 'href'  => admin_url('admin.php?page=lmfwppt-settings'),
                 'meta' => [
-                    'title' => __( 'Menu Title', 'textdomain' ), //This title will show on hover
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
                 ]
             ) );
-
+            $wp_admin_bar->add_menu( array(
+                'id'    => $parent_slug.'-sdkgenerator',
+                'parent' => $parent_slug,
+                'group'  => null,
+                'title' => __( 'SDK-Generator', 'lmfwppt' ),
+                'href'  => admin_url('admin.php?page=lmfwppt-sdk-generator'),
+                'meta' => [
+                    'title' => __( 'Menu Title', 'lmfwppt' ), //This title will show on hover
+                ]
+            ) );
         }
-
-
+            
     }
 
     /**
@@ -259,6 +275,27 @@ class LMFWPPT_Menu {
         }
     }
 
+    /**
+     * Handles the settings page
+     *
+     * @return void
+     */
+    public function sdk_generator_page() {
+        $template = __DIR__ . '/templates/tools/tools.php';
+        
+        if ( file_exists( $template ) ) {
+            include $template;
+        }
+    }
+
+    /**
+     * Enqueue scripts and styles
+     *
+     * @return void
+     */
+    public function enqueue_assets() {
+        wp_enqueue_media();
+    }
 
 }
 

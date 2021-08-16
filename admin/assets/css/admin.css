@@ -149,3 +149,39 @@ span.delete_field:hover{
 .section-content label {
     font-weight: 600;
 }
+
+.lmfwppt_theme_products{
+    display: none;
+}
+
+.lmfwppt_plugin_products{
+    display: none;
+}
+
+.opt-themes{
+     display: none;
+}
+.opt-plugins{
+    display: none;
+}
+
+.package_details li{
+    color: #777;
+    text-transform: capitalize;
+    margin: 0;
+}
+.w-100 {
+    width: 100%;
+}
+.spinner {
+    float: left;
+    margin-top: 0;
+}
+p.submit {
+    margin: 0;
+    padding: 0;
+}
+.submit_btn_area{
+    display: flex;
+    align-items: center;
+}

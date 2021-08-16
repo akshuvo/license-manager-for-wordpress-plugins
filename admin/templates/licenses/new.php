@@ -13,6 +13,8 @@ $product_defaults_args = array (
 $get_product = array();
 $get_packages = null;
 
+$submit_button_label = __( 'Add License', 'lmfwppt' );
+
 if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id'] ) ) {
     $license_id = intval( $_GET['id'] );
 
@@ -22,12 +24,18 @@ if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id']
     // Get packages data
     $get_packages = LMFWPPT_ProductsHandler::get_packages( $license_id );
 
+    $submit_button_label = __( 'Edit License', 'lmfwppt' );
+
 }
 
 // Parse incoming $args into an array and merge it with $defaults
 $get_product = wp_parse_args( $get_product, $product_defaults_args );
 // Let's extract the array to variable
 extract( $get_product );
+
+if ( $end_date ) {
+    $end_date = date('Y-m-d', strtotime($end_date));
+}
 
 ?>
 <div class="wrap">
@@ -74,25 +82,12 @@ extract( $get_product );
                     </div>
                     
                     <!-- Theme Product List -->
-                    <div class="lmfwppt-form-field" id="lmfwppt_theme_products">
+                    <div class="lmfwppt-form-field lmfwppt_theme_products">
                         <label for="product_theme_list"><?php esc_html_e( 'Theme Product List', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_theme_list]" class="products_list" id="product_theme_list">
                             <option value=" " selected>Select Product</option>
                             <?php
-                                global $wpdb;
-
-                                $args = '';
-                                $defaults = [
-                                    'number' => 20,
-                                    'product_type' => "theme"
-                                ];
-
-                                $args = wp_parse_args( $args, $defaults );
-                                 $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s 
-                                    LIMIT %d",
-                                    $args['product_type'],$args['number']);
-
-                                 $items = $wpdb->get_results( $product_list);
+                                 $items = lmfwppt_get_product_list("theme");
                                  foreach ($items as $products_list):?>
                                     
                             <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
@@ -100,29 +95,15 @@ extract( $get_product );
 
                         </select>
                     </div>
-                    
 
                     <!-- Plugin Product List -->
-                    <div class="lmfwppt-form-field" id="lmfwppt_plugin_products">
+                    <div class="lmfwppt-form-field lmfwppt_plugin_products">
                         <label for="product_plugin_list"><?php esc_html_e( 'Plugin Product List', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_plugin_list]" class="products_list" id="product_plugin_list">
                             <option value=" " selected>Select Product</option>
-                               <?php
-                                global $wpdb;
-
-                                $args = '';
-                                $defaults = [
-                                    'number' => 20,
-                                    'product_type' => "Plugin"
-                                ];
-
-                                $args = wp_parse_args( $args, $defaults );
-                                 $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s 
-                                    LIMIT %d",
-                                    $args['product_type'],$args['number']);
-
-                                 $items = $wpdb->get_results( $product_list);
-                                 foreach ($items as $products_list):?>
+                            <?php
+                                $items = lmfwppt_get_product_list("plugin");
+                                foreach ($items as $products_list):?>
                                     
                             <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
@@ -139,7 +120,7 @@ extract( $get_product );
 
                     <div class="lmfwppt-form-field">
                         <label for="end_date"><?php esc_html_e( 'License End Date', 'lmfwppt' ); ?></label>
-                        <input type="number" name="lmfwppt[end_date]" id="end_date" class="regular-text product_name_input" placeholder="License End Date" value="<?php echo esc_attr( $end_date ); ?>" required>
+                        <input type="text" name="lmfwppt[end_date]" id="end_date" class="regular-text product_name_input" placeholder="License End Date" value="<?php echo esc_attr( $end_date ); ?>" required>
                     </div>
                 </div>
             </div>
@@ -153,35 +134,15 @@ extract( $get_product );
                 <?php endif; ?>
                 
                 <?php wp_nonce_field( 'lmfwppt-add-product-nonce' ); ?>
-                <?php submit_button( __( 'Add License', 'lmfwppt' ), 'primary', 'add_license' ); ?>
+                <div class="submit_btn_area"> 
+                    <?php submit_button( $submit_button_label, 'primary', 'add_license' ); ?> 
+                    <span class="spinner"></span>
+                </div>    
             </div>
         </form>
 
     </div>
-<script type="text/javascript">
-    (function($) {
-        "use strict";
-
-        function product_type() {
-            var singleValues = $( "#product_type" ).val();
-            var theme_license_id = $( "#product_theme_list" ).val();
-            var plugin_license_id = $( "#product_plugin_list" ).val();
-            $("div#lmfwppt_theme_products").hide();
-            $("div#lmfwppt_plugin_products").hide();
-            if(singleValues == "Theme"){
-                $("div#lmfwppt_theme_products").show();
-                 
-            } 
-            else if(singleValues == "Plugin"){
-                $("div#lmfwppt_plugin_products").show();
-                 
-            }
-        }
-        $( "select" ).change( product_type );
-        product_type();
-
-    })(jQuery);
-</script>
+ 
 </div>
 
  

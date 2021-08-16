@@ -61,9 +61,9 @@ class LMFWPPT_ProductsListTable extends \WP_List_Table{
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : "";
 
 		$actions = [];
-		$actions['edit']   = sprintf( '<a href="%s" title="%s">%s</a>', admin_url( 'admin.php?page='.$page.'&action=edit&id=' . $item->id ), $item->id, __( 'Edit', 'license-manager-wppt' ), __( 'Edit', 'license-manager-wppt' ) );
+		$actions['edit']   = sprintf( '<a href="%s" title="%s">%s</a>', admin_url( 'admin.php?page='.$page.'&action=edit&id=' . $item->id ), $item->id, __( 'Edit', 'lmfwppt' ), __( 'Edit', 'lmfwppt' ) );
 
-        $actions['delete'] = sprintf( '<a href="%s" class="submitdelete" onclick="return confirm(\'Are you sure?\');" title="%s">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=lmfwppt-delete-product&redirect_url='.$page.'&id=' . $item->id ), 'lmfwppt-delete-product' ), $item->id, __( 'Delete', 'license-manager-wppt' ), __( 'Delete', 'license-manager-wppt' ) );
+        $actions['delete'] = sprintf( '<a href="%s" class="submitdelete" onclick="return confirm(\'Are you sure?\');" title="%s">%s</a>', wp_nonce_url( admin_url( 'admin-post.php?action=lmfwppt-delete-product&redirect_url='.$page.'&id=' . $item->id ), 'lmfwppt-delete-product' ), $item->id, __( 'Delete', 'lmfwppt' ), __( 'Delete', 'lmfwppt' ) );
 
 		return sprintf(
 			'<a href="%1$s"><strong>%2$s</strong></a> %3$s', admin_url('admin.php?page=license-manager-wppt&action=edit&id=' . $item->id ), $item->name, $this->row_actions($actions)
@@ -89,7 +89,7 @@ class LMFWPPT_ProductsListTable extends \WP_List_Table{
 		$this->_column_headers = [$column, $hidden, $sortable];
 
 		//  pagination and sortable
-		 $per_page     = 10;
+		 $per_page     = 20;
          $current_page = $this->get_pagenum();
          $offset = ( $current_page - 1 ) * $per_page;
 
@@ -127,7 +127,7 @@ class LMFWPPT_ProductsListTable extends \WP_List_Table{
 	        'number' => 20,
 	        'offset' => 0,
 	        'orderby' => 'id',
-	        'order' => 'ASC',
+	        'order' => 'DESC',
 	        'product_type' => 'plugin'
 	    ];
 

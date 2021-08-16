@@ -1,7 +1,7 @@
 (function($) {
 	"use strict";
 	$(document).ready(function(){
-
+         
 		// Add License Field
         $(document).on('click', '.add-license-information', function(){
             var $this = $(this);
@@ -133,11 +133,13 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function(data) {
-
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
 
                 },
                 complete: function(data) {
-
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
 
@@ -172,10 +174,12 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function(data) {
-
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
                 },
                 complete: function(data) {
-
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
                     console.log(data);
@@ -236,10 +240,114 @@
         //space remove dash add
         $(document).on('keyup', '#slug', function(e) {
             e.preventDefault();
-            
             var value = $(this).val().replace(" ", "-");
-            $('#slug').val(value);
+            $(this).val(value);
             
+        });
+
+        function product_type() {
+            var singleValues = $( "#product_type" ).val();
+            if(singleValues == "Theme"){
+                $(".lmfwppt_theme_products").show();
+                $(".lmfwppt_plugin_products").hide();
+                 
+            } 
+            else if(singleValues == "Plugin"){
+                $(".lmfwppt_plugin_products").show();
+                $(".lmfwppt_theme_products").hide();
+                 
+            }
+        }
+        $( "select" ).change( product_type );
+        product_type();
+
+        // Add Setting
+        $(document).on('submit', '#setting-add-form', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+
+            var formData = new FormData(this);
+            formData.append('action', 'setting_add_form');
+
+            $.ajax({
+                type: 'post',
+                url: ajaxurl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(data) {
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
+                },
+                complete: function(data) {
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
+                },
+                success: function(data) {
+                    console.log(data);
+
+                },
+                error: function(data) {
+                    console.log(data);
+
+                },
+
+            });
+
+        });
+
+        // Add SDK Generator
+        $(document).on('submit', '#sdk-generator-add-form', function(e) {
+            e.preventDefault();
+            var product_type = $('.product_type').val();
+            var select_product = $('.select_product').val();
+            if( (product_type == '') || (select_product == '') ){
+                return;
+            }
+            var $this = $(this);
+            var formData = new FormData(this);
+            formData.append('action', 'sdk_generator_add_form');
+
+            $.ajax({
+                type: 'post',
+                url: ajaxurl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function(data) {
+                    $this.find('.spinner').addClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', true);
+                },
+                complete: function(data) {
+                    $this.find('.spinner').removeClass('is-active');
+                    $this.find('[type="submit"]').prop('disabled', false);
+                },
+                success: function(data) {
+                    console.log(data);
+
+                },
+                error: function(data) {
+                    console.log(data);
+
+                },
+
+            });
+
+        });
+
+        // tools page
+        $(document).on('change', '.product_type', function(e){
+             
+            var product_type = $(this).val();
+            if(product_type == 'theme'){
+                $('.opt-themes').show();
+                $('.opt-plugins').hide();
+
+            }else if(product_type == 'plugin'){
+                $('.opt-plugins').show();
+                $('.opt-themes').hide();
+            }
+
         });
 
 	});

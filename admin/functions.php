@@ -65,3 +65,17 @@ function lmfwppt_api_url(){
     return apply_filters( 'lmfwppt_api_url', home_url('/') );
 }
 
+// Get Product list
+function lmfwppt_get_product_list( $product_type ){
+
+    if ( !$product_type ) {
+        return;
+    }
+
+    global $wpdb;
+
+    $product_list = $wpdb->prepare("SELECT id,name FROM {$wpdb->prefix}lmfwppt_products WHERE product_type = %s ", $product_type );
+
+     $items = $wpdb->get_results( $product_list );
+     return $items;
+}

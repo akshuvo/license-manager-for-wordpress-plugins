@@ -12,15 +12,13 @@ class LMFWPPT_LicenseHandler {
         
         add_action( 'wp_ajax_license_add_form', [ $this, 'license_add' ] );
         add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] );
-        add_action( 'wp_ajax_license_key', [ $this, 'license_key_add' ] );
+        add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
 
         if ( isset( $_GET['lmfwppt-info'] ) && $_GET['lmfwppt-info'] == "true" ) {
             $this->get_wp_license_details( $_GET );
             exit;
         }
-
-      
         
     }
 
@@ -165,7 +163,7 @@ class LMFWPPT_LicenseHandler {
             'license_key' => isset($post_data['license_key']) ? sanitize_text_field( $post_data['license_key'] ) : "",
             'package_id' => isset($post_data['package_id']) ? sanitize_text_field( $post_data['package_id'] ) : "",
             'order_id' => isset($post_data['order_id']) ? sanitize_text_field( $post_data['order_id'] ) : "",
-            'end_date' => isset($post_data['end_date']) ? intval( $post_data['end_date'] ) : "",
+            'end_date' => isset($post_data['end_date']) ? date("Y-m-d", strtotime( $post_data['end_date'] ) ) : "",
         );
 
         if ( isset( $post_data['license_id'] ) ) {
@@ -202,12 +200,19 @@ class LMFWPPT_LicenseHandler {
         die();
     }
 
-    // License Key Genarate
-    function license_key_add() {
-
-        echo $key = rand();
+    // License Key Genarate Ajax Hook
+    function ajax_generate_license_key(){
+        echo self::generate_license_key();
         die();
+    }
 
+    // License Key Genarate function
+    public static function generate_license_key() {
+
+        $prefix = LMFWPPT_SettingsHandler::lmfwppt_get_option('license_code_prefix');
+        $limit = LMFWPPT_SettingsHandler::lmfwppt_get_option('license_code_character_limit');
+        $key = wp_generate_password( $limit, false, false );
+        return $prefix.$key;
     }
 
     // Delete License Id
@@ -234,7 +239,6 @@ class LMFWPPT_LicenseHandler {
             }
 
             $id = isset( $_REQUEST['id'] ) ? intval( $_REQUEST['id'] ) : 0; 
-            var_dump($id);
 
             if ( $this->lmfwppt_delete_license( $id ) ) {
                 $redirected_to = admin_url( 'admin.php?page=license-manager-wppt-licenses&deleted=true' );
@@ -247,6 +251,20 @@ class LMFWPPT_LicenseHandler {
 
         }    
     } 
+
+    public static function get_licenses_by_order_ids( $order_ids = array() ){
+
+        $order_ids = wp_parse_args( $order_ids, array() );
+
+        if( count( $order_ids ) < 1 ) {
+            return;
+        }
+
+        global $wpdb;
+
+        $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}lmfwppt_licenses WHERE 1=%d AND order_id IN ( " . implode(',', $order_ids) . " ) ORDER BY dated DESC", 1 );
+        return $wpdb->get_results( $query, ARRAY_A );
+    }
 
 }
 

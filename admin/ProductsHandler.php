@@ -283,6 +283,7 @@ class LMFWPPT_ProductsHandler {
 
     }
 
+
     // Create package function
     function create_package( $post_data = array(), $product_id = null ){
         global $wpdb;
@@ -412,8 +413,51 @@ class LMFWPPT_ProductsHandler {
             wp_redirect( $redirected_to );
             exit;
 
-            }    
-        } 
+        }    
+    } 
+
+    // Get package name by Package ID
+    public static function get_package_name( $package_id ){
+
+        if( !$package_id ){
+            return;
+        }
+
+        global $wpdb;
+        $query = $wpdb->prepare("SELECT label FROM {$wpdb->prefix}lmfwppt_license_packages WHERE package_id = %s", $package_id);
+        return $wpdb->get_var( $query );
+    }
+
+    // Get package name by Package ID
+    public static function get_package_by_package_id( $package_id, $column_name = '*' ){
+
+        if( !$package_id ){
+            return;
+        }
+
+        global $wpdb;
+        $query = $wpdb->prepare("SELECT {$column_name} FROM {$wpdb->prefix}lmfwppt_license_packages WHERE package_id = %s", $package_id);
+
+        $result = $wpdb->get_row( $query, ARRAY_A );
+
+        if ( $column_name != '*' ) {
+            return isset( $result[$column_name] ) ? $result[$column_name] : null;
+        }
+        return $result;
+    }
+
+    // Get package value 
+    public static function get_product_details_by_package_id( $package_id = null ){
+
+        if( !$package_id ) {
+            return;
+        }
+
+        global $wpdb;
+        $get_product = $wpdb->get_row( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}lmfwppt_license_packages as lp INNER JOIN {$wpdb->prefix}lmfwppt_products as p ON p.id = lp.product_id WHERE lp.package_id = %s", $package_id), ARRAY_A );
+
+        return $get_product;
+    }
 
 }
 
