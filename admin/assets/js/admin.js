@@ -135,6 +135,7 @@
                 beforeSend: function(data) {
                     $this.find('.spinner').addClass('is-active');
                     $this.find('[type="submit"]').prop('disabled', true);
+                    $(document).trigger("lmfwppt_notice", ['', 'remove']);
 
                 },
                 complete: function(data) {
@@ -142,16 +143,11 @@
                     $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
-
-
-                    //var response = JSON.parse(data);
-
-
-                    console.log(data);
+                    $(document).trigger("lmfwppt_notice", ['Product updated', 'success']);
 
                 },
                 error: function(data) {
-                    console.log(data);
+                    $(document).trigger("lmfwppt_notice", ['Something went wrong. Try again.', 'error']);
 
                 },
 
@@ -176,17 +172,18 @@
                 beforeSend: function(data) {
                     $this.find('.spinner').addClass('is-active');
                     $this.find('[type="submit"]').prop('disabled', true);
+                    $(document).trigger("lmfwppt_notice", ['', 'remove']);
                 },
                 complete: function(data) {
                     $this.find('.spinner').removeClass('is-active');
                     $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
-                    console.log(data);
+                    $(document).trigger("lmfwppt_notice", ['Licenses updated', 'success']);
 
                 },
                 error: function(data) {
-                    console.log(data);
+                    $(document).trigger("lmfwppt_notice", ['Something went wrong. Try again.', 'error']);
 
                 },
 
@@ -278,17 +275,17 @@
                 beforeSend: function(data) {
                     $this.find('.spinner').addClass('is-active');
                     $this.find('[type="submit"]').prop('disabled', true);
+                    $(document).trigger("lmfwppt_notice", ['', 'remove']);
                 },
                 complete: function(data) {
                     $this.find('.spinner').removeClass('is-active');
                     $this.find('[type="submit"]').prop('disabled', false);
                 },
                 success: function(data) {
-                    console.log(data);
-
+                    $(document).trigger("lmfwppt_notice", ['Setting updated', 'success']);
                 },
                 error: function(data) {
-                    console.log(data);
+                    $(document).trigger("lmfwppt_notice", ['Something went wrong. Try again.', 'error']);
 
                 },
 
@@ -348,6 +345,17 @@
                 $('.opt-themes').hide();
             }
 
+        });
+
+        // Notice Messages show script
+        $(document).on("lmfwppt_notice", function(event, notice, type) {
+            
+            if(type == "remove"){
+                $('.lmfwppt-notices').html('');
+                    return;
+            }
+            var notice_html = '<div class="notice notice-alt is-dismissible notice-'+type+'"><p>'+notice+'</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+            $('.lmfwppt-notices').html(notice_html);
         });
 
 	});

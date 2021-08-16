@@ -27,6 +27,7 @@
             <?php submit_button( __( 'Save', 'lmfwppt' ), 'primary' ); ?> 
             <span class="spinner"></span>
          </div>
+         <div class="lmfwppt-notices"></div>
       </form>
 
 </div>

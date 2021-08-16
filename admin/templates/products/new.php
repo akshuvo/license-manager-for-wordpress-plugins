@@ -172,6 +172,7 @@ $sections_arr = unserialize($sections);
                     <span class="spinner"></span>
                 </div>    
             </div>
+            <div class="lmfwppt-notices"></div>
         </form>
 
     </div>
