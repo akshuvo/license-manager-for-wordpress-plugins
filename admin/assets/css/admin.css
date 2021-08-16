@@ -185,3 +185,51 @@ p.submit {
     display: flex;
     align-items: center;
 }
+
+.lmwppt-inner{
+    background-color: #fff;
+}
+
+.lmwppt-inner {
+    background-color: #fff;
+    width: 100%;
+    padding: 15px 20px;
+    margin-right: 30px;
+}
+
+.lmwppt-main-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lmwppt-title h3{
+    color: #777;
+    font-size: 15px;
+    margin: 7px;
+}
+
+.lmwppt-counter h1 {
+    font-size: 25px;
+    margin: 10px;
+}
+
+.lmwppt-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.lmwppt-icon span {
+    font-size: 60px;
+    width: 100%;
+}
+
+.lmwppt-icon span.lmwppt-icon-1 {
+    color: hsl(197deg 93% 74%);
+}
+.lmwppt-icon span.lmwppt-icon-2 {
+    color: hsl(241deg 78% 73%);
+}
+.lmwppt-icon span.lmwppt-icon-3 {
+    color: hsl(143deg 59% 70%);
+}
