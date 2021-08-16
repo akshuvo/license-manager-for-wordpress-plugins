@@ -233,6 +233,7 @@
         // Generate License Key
         $(document).on('click', '#generate_key', function(e){
             e.preventDefault();
+            var $this = $(this);
 
             $.ajax({
                 type:'POST',
@@ -241,6 +242,15 @@
                     action:'license_key',
                 },
                 cache:false,
+
+                beforeSend: function(data) {
+                   $this.find('.spinner').addClass('is-active');
+                     
+                },
+                complete: function(data) {
+                    $this.find('.spinner').removeClass('is-active');
+                     
+                },
                 success:function(data){
                     if(data){
                         $("#license_key").val(data);

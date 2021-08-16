@@ -60,7 +60,10 @@ if ( $end_date ) {
                         <label for="download_link"><?php esc_html_e( 'License Key', 'lmfwppt' ); ?></label>
                         <div class="lmfwppt-file-field">
                             <input type="text" name="lmfwppt[license_key]" id="license_key" class="regular-text" placeholder="<?php esc_attr_e( 'License Key', 'lmfwppt' ); ?>" value="<?php echo esc_attr( $license_key ); ?>" readonly>
-                            <button class="button" type="button" id="generate_key"><?php esc_html_e( 'Generate Key', 'lmfwppt' ); ?></button>
+                            <button class="button" type="button" id="generate_key"><?php esc_html_e( 'Generate Key', 'lmfwppt' ); ?>
+                                <span class="spinner"></span>
+                            </button>
+                            
                         </div>
                     </div>
 
