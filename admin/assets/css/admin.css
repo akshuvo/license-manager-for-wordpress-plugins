@@ -142,7 +142,7 @@ span.delete_field:hover{
     text-align: right;
 }
 
-#lmfwppt_license_package{
+.lmfwppt_license_package{
     display: none;
 }
 
@@ -151,6 +151,13 @@ span.delete_field:hover{
 }
 
 .lmfwppt_theme_products{
+    /*display: none;*/
+}
+
+.plugin-opt{
+    display: none;
+}
+.theme-opt{
     display: none;
 }
 

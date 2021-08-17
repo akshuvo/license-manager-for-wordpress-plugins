@@ -10,12 +10,14 @@ $product_defaults_args = array (
 );
 
 
+
 $get_product = array();
 $get_packages = null;
 
 $submit_button_label = __( 'Add License', 'lmfwppt' );
 
 if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" && isset( $_GET['id'] ) ) {
+
     $license_id = intval( $_GET['id'] );
 
     // Get Product date 
@@ -36,7 +38,20 @@ extract( $get_product );
 if ( $end_date ) {
     $end_date = date('Y-m-d', strtotime($end_date));
 }
+var_dump( LMFWPPT_ProductsHandler::get_product_details_by_package_id($package_id) );
+$package_id = LMFWPPT_ProductsHandler::get_product_details_by_package_id($package_id);
 
+$product_type = $package_id['product_type'];
+$product_name = $package_id['name'];
+$product_id = $package_id['product_id'];
+$package = $package_id['package_id'];
+$label = $package_id['label'];
+
+echo $product_type.'<br>';
+echo $product_id.'<br>';
+echo $product_name.'<br>';
+echo $package.'<br>';
+echo $label;
 ?>
 <div class="wrap">
 
@@ -77,46 +92,39 @@ if ( $end_date ) {
                     <div class="lmfwppt-form-field">
                         <label for="product_type"><?php esc_html_e( 'Product Type', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[product_type]" id="product_type">
-
+                             
                             <option value=" " selected>Select Product Type</option>
+                            <option value="theme" <?php selected( $product_type, 'Theme' ); ?> ><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
 
-                            <option value="Theme" <?php selected( $product_type, 'Theme' ); ?> ><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
-
-                            <option value="Plugin" <?php selected( $product_type, 'Plugin' ); ?> ><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
+                            <option value="plugin" <?php selected( $product_type, 'Plugin' ); ?> ><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
                         </select>
                     </div>
                     
                     <!-- Theme Product List -->
                     <div class="lmfwppt-form-field lmfwppt_theme_products">
-                        <label for="product_theme_list"><?php esc_html_e( 'Theme Product List', 'lmfwppt' ); ?></label>
-                        <select name="lmfwppt[product_theme_list]" class="products_list" id="product_theme_list">
+                        <label for="product_theme_list"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label>
+                        <select name="lmfwppt[product_list]" class="products_list" id="product_theme_list">
                             <option value=" " selected>Select Product</option>
                             <?php
                                  $items = lmfwppt_get_product_list("theme");
                                  foreach ($items as $products_list):?>
                                     
-                            <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
+                            <option value="<?php echo $products_list->id; ?>" class="theme-opt"><?php echo $products_list->name; ?></option>
+                        <?php endforeach; ?>
+                        <?php
+                            $items = lmfwppt_get_product_list("plugin");
+                            foreach ($items as $products_list):?>
+                                
+                            <option value="<?php echo $products_list->id; ?>" class="plugin-opt"><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
 
-                        </select>
-                    </div>
-
-                    <!-- Plugin Product List -->
-                    <div class="lmfwppt-form-field lmfwppt_plugin_products">
-                        <label for="product_plugin_list"><?php esc_html_e( 'Plugin Product List', 'lmfwppt' ); ?></label>
-                        <select name="lmfwppt[product_plugin_list]" class="products_list" id="product_plugin_list">
-                            <option value=" " selected>Select Product</option>
-                            <?php
-                                $items = lmfwppt_get_product_list("plugin");
-                                foreach ($items as $products_list):?>
-                                    
-                            <option value="<?php echo $products_list->id; ?>"><?php echo $products_list->name; ?></option>
-                        <?php endforeach; ?>
                         </select>
                     </div>
                      
-                     <!--  License Package -->
-                    <div class="lmfwppt-form-field" id="lmfwppt_license_package">
+                    <!--  License Package -->
+                    
+
+                    <div class="lmfwppt-form-field lmfwppt_license_package" id="lmfwppt_license_package">
                         <label for="lmfwppt_theme_package">Select Package</label>
                         <select name="lmfwppt[package_id]" id="lmfwppt_package_list">
                              

@@ -208,7 +208,7 @@
 
         // Add package
         $(document).on('change', '.products_list', function(e){
-            $("#lmfwppt_license_package").show();
+            $(".lmfwppt_license_package").show();
             var id = $(this).val();
 
             $.ajax({
@@ -268,14 +268,19 @@
 
         function product_type() {
             var singleValues = $( "#product_type" ).val();
-            if(singleValues == "Theme"){
-                $(".lmfwppt_theme_products").show();
-                $(".lmfwppt_plugin_products").hide();
+            var select_opt = '<option value=" ">Select Product-</option>';
+            if( singleValues == "theme" || singleValues == "plugin" || singleValues == " "){
+                $(".products_list").html(select_opt);
+            }
+
+            if(singleValues == "theme"){
+                $(".theme-opt").show();
+                $(".plugin-opt").hide();
                  
             } 
-            else if(singleValues == "Plugin"){
-                $(".lmfwppt_plugin_products").show();
-                $(".lmfwppt_theme_products").hide();
+            else if(singleValues == "plugin"){
+                $(".plugin-opt").show();
+                $(".theme-opt").hide();
                  
             }
         }
