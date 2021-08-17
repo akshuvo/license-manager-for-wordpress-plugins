@@ -257,3 +257,7 @@ button#generate_key {
     align-items: center;
     justify-content: center;
 }
+
+.parent-slug-menu{
+    display: none;
+}

@@ -121,9 +121,9 @@
         // Add Product
         $(document).on('submit', '#product-form', function(e) {
             e.preventDefault();
-            var $this = $(this);
+            let $this = $(this);
 
-            var formData = new FormData(this);
+            let formData = new FormData(this);
             formData.append('action', 'product_add_form');
 
             // Get Product type
@@ -166,10 +166,10 @@
 
         // Add License
         $(document).on('submit', '#license-add-form', function(e) {
-            e.preventDefault();
-            var $this = $(this);
+            e.preventDefaultlet
+            let $this = $(this);
 
-            var formData = new FormData(this);
+            let formData = new FormData(this);
             formData.append('action', 'license_add_form');
 
             $.ajax({
@@ -210,8 +210,8 @@
         $(document).on('change', '.products_list', function(e, is_edit){
             
             $(".lmfwppt_license_package").show();
-            var id = $(this).val();
-            var selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
+            let id = $(this).val();
+            let selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
 
             $.ajax({
                 type:"POST",
@@ -241,7 +241,7 @@
         // Generate License Key
         $(document).on('click', '#generate_key', function(e){
             e.preventDefault();
-            var $this = $(this);
+            let $this = $(this);
 
             $.ajax({
                 type:'POST',
@@ -269,7 +269,7 @@
         //space remove dash add
         $(document).on('keyup', '#slug', function(e) {
             e.preventDefault();
-            var value = $(this).val().replace(" ", "-");
+            let value = $(this).val().replace(" ", "-");
             $(this).val(value);
             
         });
@@ -301,9 +301,9 @@
         // Add Setting
         $(document).on('submit', '#setting-add-form', function(e) {
             e.preventDefault();
-            var $this = $(this);
+            let $this = $(this);
 
-            var formData = new FormData(this);
+            let formData = new FormData(this);
             formData.append('action', 'setting_add_form');
 
             $.ajax({
@@ -336,8 +336,8 @@
         // Add SDK Generator
         $(document).on('submit', '#sdk-generator-add-form', function(e) {
             e.preventDefault();
-            var product_type = $('.product_type').val();
-            var select_product = $('.select_product').val();
+            let product_type = $('.product_type').val();
+            let select_product = $('.select_product').val();
             if( (product_type == '') || (select_product == '') ){
                 return;
             }
@@ -372,6 +372,17 @@
 
         });
 
+        // Parent slug input field hide show
+        $(document).on('change', '#lmfwppt_menu_select', function(e) {
+            $('.parent-slug-menu').hide();
+            let menu = $(this).val(); 
+            if(menu == "sub_menu"){
+                $(this).closest('.lmfwppt-form-section').find('.parent-slug-menu').show();
+            } else{
+                $(this).closest('.lmfwppt-form-section').find('.parent-slug-menu').hide();
+            }
+        });
+
         // Notice Messages show script
         $(document).on("lmfwppt_notice", function(event, notice, type) {
             
@@ -379,7 +390,7 @@
                 $('.lmfwppt-notices').html('');
                     return;
             }
-            var notice_html = '<div class="notice notice-alt is-dismissible notice-'+type+'"><p>'+notice+'</p></div>';
+            let notice_html = '<div class="notice notice-alt is-dismissible notice-'+type+'"><p>'+notice+'</p></div>';
             $('.lmfwppt-notices').html(notice_html);
             jQuery(document).trigger('wp-updates-notice-added');
         
