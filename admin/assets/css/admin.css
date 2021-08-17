@@ -223,6 +223,7 @@ p.submit {
     align-items: center;
     justify-content: space-between;
 }
+
 .lmwppt-icon span {
     font-size: 60px;
     width: 100%;
@@ -231,21 +232,15 @@ p.submit {
 .lmwppt-icon span.lmwppt-icon-1 {
     color: hsl(197deg 93% 74%);
 }
+
 .lmwppt-icon span.lmwppt-icon-2 {
     color: hsl(241deg 78% 73%);
 }
+
 .lmwppt-icon span.lmwppt-icon-3 {
     color: hsl(143deg 59% 70%);
 }
 
-.main-key-button {
-    position: relative;
-}
-
-span.spinner-key-button {
-    position: absolute;
-    top: 35%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+.key-spinner{
+    display: none;
 }

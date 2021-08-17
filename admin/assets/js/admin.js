@@ -242,15 +242,17 @@
                     action:'license_key',
                 },
                 cache:false,
-
                 beforeSend: function(data) {
-
-                    $this.closest('.main-key-button').find('.spinner').addClass('is-active');
-                   $('#generate_key').empty();  
+                    $this.find('.spinner').addClass('is-active');
+                    $('#generate_key').prop('disabled', true);
+                    $this.find('.generate-key-label').hide();  
+                    $this.find('.spinner').show();  
                 },
                 complete: function(data) {
-                    $this.closest('.main-key-button').find('.spinner').removeClass('is-active');
-                    $('#generate_key').text("Generate Key");  
+                    $this.find('.spinner').removeClass('is-active');
+                    $('#generate_key').prop('disabled', false);
+                    $this.find('.generate-key-label').show();
+                     $this.find('.spinner').hide();
                 },
                 success:function(data){
                     if(data){
