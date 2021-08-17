@@ -243,16 +243,12 @@
                 },
                 cache:false,
                 beforeSend: function(data) {
-                    $this.find('.spinner').addClass('is-active');
-                    $('#generate_key').prop('disabled', true);
-                    $this.find('.generate-key-label').hide();  
-                    $this.find('.spinner').show();  
+                    $this.find('.spinner').addClass('is-active').show();  
+                    $('#generate_key').prop('disabled', true).find('.generate-key-label').hide();  
                 },
                 complete: function(data) {
-                    $this.find('.spinner').removeClass('is-active');
-                    $('#generate_key').prop('disabled', false);
-                    $this.find('.generate-key-label').show();
-                     $this.find('.spinner').hide();
+                    $this.find('.spinner').removeClass('is-active').hide();
+                    $('#generate_key').prop('disabled', false).find('.generate-key-label').show();
                 },
                 success:function(data){
                     if(data){

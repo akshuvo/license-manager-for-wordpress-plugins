@@ -244,3 +244,9 @@ p.submit {
 .key-spinner{
     display: none;
 }
+
+button#generate_key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
