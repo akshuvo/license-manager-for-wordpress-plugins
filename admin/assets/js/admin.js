@@ -207,7 +207,7 @@
         });
 
         // Add package
-        $(document).on('change', '.products_list', function(e){
+        $(document).on('change', '.products_list', function(e, is_edit){
             $(".lmfwppt_license_package").show();
             var id = $(this).val();
             var selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
@@ -223,7 +223,12 @@
                 cache:false,
                 success:function(data){
                      if( data ){
-                        $("#lmfwppt_package_list").html( data )
+                        $("#lmfwppt_package_list").html( data );
+
+                        // handle edit
+                        if ( is_edit ) {
+                            $("#lmfwppt_package_list").find( 'option[value="'+selected+'"]' ).prop('selected', 1);
+                        }
                      }
                 },
                 error:function(data){
@@ -275,8 +280,7 @@
             $(".plugin-opt").hide();
 
             if ( !is_edit ) {
-
-            jQuery('.products_list').val('');
+                jQuery('.products_list').val('');
             }
 
             if(thisVal == "theme"){
