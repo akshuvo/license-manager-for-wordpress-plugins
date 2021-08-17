@@ -20,19 +20,19 @@
                <tr>
                   <th><label for="select_product"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
                   <td>
-                   <select id="select_product" name="select_product" class="select_product" required>
-                        <option value="" selected>Select Product</option>
+                   <select id="select_product" name="select_product" class="select_product products_list" required>
+                        <option value="" class="blank">Select Product</option>
                         <?php
                         $items = lmfwppt_get_product_list("theme");
                         foreach ($items as $products_list): ?>
                                  
-                           <option value="<?php echo $products_list->id; ?>" class="opt-themes"><?php echo $products_list->name; ?></option>
+                           <option value="<?php echo $products_list->id; ?>" class="theme-opt"><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
                             
                         <?php
                         $items = lmfwppt_get_product_list("plugin");
                         foreach ($items as $products_list): ?>
-                           <option value="<?php echo $products_list->id; ?>" class="opt-plugins"><?php echo $products_list->name; ?></option>
+                           <option value="<?php echo $products_list->id; ?>" class="plugin-opt"><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
                      </select>
                   </td>

@@ -146,8 +146,17 @@ final class LMFWPPT {
 	    
 	    wp_enqueue_media();
 
+	    // Load the datepicker script (pre-registered in WordPress).
+	    wp_enqueue_script( 'jquery-ui-datepicker' );
+
+	    // jQuery UI CSS on a CDN.
+	    wp_register_style( 'jquery-ui', 'https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css' );
+	    wp_enqueue_style( 'jquery-ui' );  
+
 	    wp_enqueue_style( 'lmfwppt-admin-styles', LMFWPPT_PLUGIN_URL . 'admin/assets/css/admin.css', null, $ver );
 	    wp_enqueue_script( 'lmwppt-admin-scripts', LMFWPPT_PLUGIN_URL . 'admin/assets/js/admin.js', array('jquery'), $ver );
+
+
 	}
 
 }

@@ -210,13 +210,17 @@
         $(document).on('change', '.products_list', function(e){
             $(".lmfwppt_license_package").show();
             var id = $(this).val();
+            var selected = $('#lmfwppt_package_list').attr('data-pack_value');
+
+            console.log(selected);
 
             $.ajax({
                 type:"POST",
                 url: ajaxurl,
                 data:{
                     action:'package_id',
-                    id:id
+                    id:id,
+                    selected:selected
                 },
                 cache:false,
                 success:function(data){
@@ -266,26 +270,30 @@
             
         });
 
-        function product_type() {
-            var singleValues = $( "#product_type" ).val();
-            var select_opt = '<option value=" ">Select Product-</option>';
-            if( singleValues == "theme" || singleValues == "plugin" || singleValues == " "){
-                $(".products_list").html(select_opt);
+        $(document).on('change', '#product_type', function(e, is_edit) {
+            let thisVal = $(this).val();
+            
+            $(".theme-opt").hide();
+            $(".plugin-opt").hide();
+
+            if ( !is_edit ) {
+
+            jQuery('.products_list').val('');
             }
 
-            if(singleValues == "theme"){
+            if(thisVal == "theme"){
                 $(".theme-opt").show();
                 $(".plugin-opt").hide();
                  
-            } 
-            else if(singleValues == "plugin"){
+            } else if(thisVal == "plugin"){
                 $(".plugin-opt").show();
                 $(".theme-opt").hide();
-                 
             }
-        }
-        $( "select" ).change( product_type );
-        product_type();
+        });
+
+        jQuery('#product_type').trigger('change',['true']);
+        jQuery('.products_list').trigger('change',['true']);
+        
 
         // Add Setting
         $(document).on('submit', '#setting-add-form', function(e) {
@@ -358,21 +366,6 @@
                 },
 
             });
-
-        });
-
-        // tools page
-        $(document).on('change', '.product_type', function(e){
-             
-            var product_type = $(this).val();
-            if(product_type == 'theme'){
-                $('.opt-themes').show();
-                $('.opt-plugins').hide();
-
-            }else if(product_type == 'plugin'){
-                $('.opt-plugins').show();
-                $('.opt-themes').hide();
-            }
 
         });
 
