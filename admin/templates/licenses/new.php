@@ -42,12 +42,7 @@ var_dump( LMFWPPT_ProductsHandler::get_product_details_by_package_id($package_id
 $product_details = LMFWPPT_ProductsHandler::get_product_details_by_package_id($package_id);
 
 $product_type = $product_details['product_type'];
-
 $product_id = $product_details['product_id'];
-
-
-echo $product_type.'<br>';
-echo $product_id.'<br>';
 
 ?>
 <div class="wrap">
@@ -106,14 +101,14 @@ echo $product_id.'<br>';
                                  $items = lmfwppt_get_product_list("theme");
                                  foreach ($items as $products_list):?>
                                     
-                            <option value="<?php echo $products_list->id; ?>" class="theme-opt" <?php selected( $product_id, $products_list->id ); ?>><?php echo $products_list->name; ?></option>
+                                <option value="<?php echo $products_list->id; ?>" class="theme-opt" <?php selected( $product_id, $products_list->id ); ?>><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
                         <?php
                             $items = lmfwppt_get_product_list("plugin");
                             foreach ($items as $products_list):?>
                                 
                             <option value="<?php echo $products_list->id; ?>" class="plugin-opt" <?php selected( $product_id, $products_list->id ); ?>><?php echo $products_list->name; ?></option>
-                        <?php endforeach; ?>
+                        <?php endforeach; ?> 
 
                         </select>
                     </div>

@@ -210,9 +210,7 @@
         $(document).on('change', '.products_list', function(e){
             $(".lmfwppt_license_package").show();
             var id = $(this).val();
-            var selected = $('#lmfwppt_package_list').attr('data-pack_value');
-
-            console.log(selected);
+            var selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
 
             $.ajax({
                 type:"POST",

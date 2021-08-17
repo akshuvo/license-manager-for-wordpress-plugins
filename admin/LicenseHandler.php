@@ -11,7 +11,7 @@ class LMFWPPT_LicenseHandler {
     function __construct() {
         
         add_action( 'wp_ajax_license_add_form', [ $this, 'license_add' ] );
-        add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] );
+        add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] ); 
         add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
 
@@ -182,21 +182,21 @@ class LMFWPPT_LicenseHandler {
 
     // Select Package 
     function product_package() {
+       
 
-
-        if( isset( $_POST['id'] ) ) {
+        if( isset($_POST['id']) ) {
 
             $package_list = LMFWPPT_ProductsHandler::get_packages($_POST['id']);
 
             $selected = $_POST['selected'];
-
+            console.log($selected);
             if( $package_list ) {
 
                 foreach( $package_list as $result ):
                     $package_id = $result['package_id'];
                     $label = $result['label'];
                     ?>
-                    <option value="<?php echo $package_id; ?>" <?php selected( $selected, $package_id );?>><?php echo $label; ?></option> 
+                    <option value="<?php echo $package_id; ?>"<?php selected( $selected, $package_id );?>><?php echo $label; ?></option> 
                     <?php 
                 endforeach;
             }
