@@ -183,15 +183,11 @@ class LMFWPPT_LicenseHandler {
     // Select Package 
     function product_package() {
        
-
         if( isset($_POST['id']) ) {
-
             $package_list = LMFWPPT_ProductsHandler::get_packages($_POST['id']);
+            $selected = isset( $_POST['selected'] ) ? sanitize_text_field( $_POST['selected'] ) : '';
 
-            $selected = $_POST['selected'];
-            console.log($selected);
             if( $package_list ) {
-
                 foreach( $package_list as $result ):
                     $package_id = $result['package_id'];
                     $label = $result['label'];
@@ -200,10 +196,7 @@ class LMFWPPT_LicenseHandler {
                     <?php 
                 endforeach;
             }
-         
         }
-
-        
         die();
     }
 

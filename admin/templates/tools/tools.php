@@ -1,26 +1,23 @@
  
-
 <div class="wrap">
-   <h1><?php _e( 'SDK Generator', 'lmfwppt' ); ?></h1>
-
-      <form action="" method="post" id="sdk-generator-add-form">
-         
-         <table class="form-table" role="presentation">
-            <tbody>
-               <tr>
-                  <th><label for="product_type"><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></label></th>
-                  <td>
+      <div class="lmwppt-wrap">
+         <div class="lmwppt-inner-card card-shameless">
+            <h1><?php _e( 'SDK Generator', 'lmfwppt' ); ?></h1>
+         </div>
+         <form action="" method="post" id="">
+            <div class="lmwppt-inner-card">
+               <div class="lmfwppt-form-section" id="">
+                  <div class="lmfwppt-form-field">
+                     <label for="product_type"><?php esc_html_e( 'Product Type', 'lmfwppt' ); ?></label>
                      <select name="product_type" class="product_type" id="product_type" required>
-                      <option value="" selected>Select Product Type</option>
-                      <option value="theme"><?php esc_html_e( 'theme', 'lmfwppt' ); ?></option>
-                      <option value="plugin"><?php esc_html_e( 'plugin', 'lmfwppt' ); ?></option>
-                  </select>
-                  </td>
-               </tr>
-               <tr>
-                  <th><label for="select_product"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label></th>
-                  <td>
-                   <select id="select_product" name="select_product" class="select_product products_list" required>
+                        <option value="" selected>Select Product Type</option>
+                        <option value="theme"><?php esc_html_e( 'theme', 'lmfwppt' ); ?></option>
+                        <option value="plugin"><?php esc_html_e( 'plugin', 'lmfwppt' ); ?></option>
+                     </select>
+                  </div>
+                  <div class="lmfwppt-form-field">
+                     <label for="select_product"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label>
+                     <select id="select_product" name="select_product" class="select_product products_list" required>
                         <option value="" class="blank">Select Product</option>
                         <?php
                         $items = lmfwppt_get_product_list("theme");
@@ -35,18 +32,34 @@
                            <option value="<?php echo $products_list->id; ?>" class="plugin-opt"><?php echo $products_list->name; ?></option>
                         <?php endforeach; ?>
                      </select>
-                  </td>
-               </tr>
-                
-            </tbody>
-         </table>
-         <div class="submit_btn_area"> 
-            <input type="hidden" name="lmaction" value="sdk_generator_add_form">
-            <?php submit_button( __( 'Generate', 'lmfwppt' ), 'primary' ); ?> 
-            <span class="spinner"></span>
-         </div>
-         <div class="lmfwppt-notices"></div>
-      </form>
+                  </div>
+                  <div class="lmfwppt-form-field">
+                     <label for="lmfwppt_menu_select"><?php esc_html_e( 'Menu Type', 'lmfwppt' ); ?></label>
+                      <select id="lmfwppt_menu_select" name="parent_slug" class="" required>
+                        <option value="">Menu</option>
+                        <option value="">Sub Menu</option>
+                     </select>
+                  </div>
+                  <div class="lmfwppt-form-field">
+                     <label for="lmfwppt_page_title"><?php esc_html_e( 'Page Title', 'lmfwppt' ); ?></label>
+                     <input type="text" name="page_title" id="lmfwppt_page_title" class="regular-text" placeholder="Page Title" value="">
+                  </div>
+                  <div class="lmfwppt-form-field">
+                     <label for="lmfwppt_menu_title"><?php esc_html_e( 'Menu Title', 'lmfwppt' ); ?></label>
+                     <input type="text" name="menu_title" id="lmfwppt_menu_title" class="regular-text" placeholder="Menu Title" value="">
+                  </div>
+               </div>
+            </div>
+            <div class="lmwppt-inner-card lmfwppt-buttons card-shameless">
+                <input type="hidden" name="lmaction" value="">
 
+               <div class="submit_btn_area"> 
+                  <input type="hidden" name="lmaction" value="sdk_generator_add_form">
+                  <?php submit_button( __( 'Generate', 'lmfwppt' ), 'primary' ); ?> 
+                  <span class="spinner"></span>
+               </div>
+               <div class="lmfwppt-notices"></div>  
+            </div>
+         </form>
+      </div>
 </div>
-

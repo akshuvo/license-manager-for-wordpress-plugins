@@ -208,6 +208,7 @@
 
         // Add package
         $(document).on('change', '.products_list', function(e, is_edit){
+            
             $(".lmfwppt_license_package").show();
             var id = $(this).val();
             var selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
