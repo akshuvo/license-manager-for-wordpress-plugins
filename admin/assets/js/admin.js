@@ -244,12 +244,13 @@
                 cache:false,
 
                 beforeSend: function(data) {
-                   $this.find('.spinner').addClass('is-active');
-                     
+
+                    $this.closest('.main-key-button').find('.spinner').addClass('is-active');
+                   $('#generate_key').empty();  
                 },
                 complete: function(data) {
-                    $this.find('.spinner').removeClass('is-active');
-                     
+                    $this.closest('.main-key-button').find('.spinner').removeClass('is-active');
+                    $('#generate_key').text("Generate Key");  
                 },
                 success:function(data){
                     if(data){

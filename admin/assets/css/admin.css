@@ -237,3 +237,15 @@ p.submit {
 .lmwppt-icon span.lmwppt-icon-3 {
     color: hsl(143deg 59% 70%);
 }
+
+.main-key-button {
+    position: relative;
+}
+
+span.spinner-key-button {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}

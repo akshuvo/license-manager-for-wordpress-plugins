@@ -4,7 +4,7 @@
  
 
 <div class="lmwppt-main-section">
-   <a href="http://testsite.local/wp-admin/admin.php?page=license-manager-wppt-plugins">
+   <a href="<?php echo admin_url( 'admin.php?page=license-manager-wppt-plugins' ); ?>">
    <div class="lmwppt-inner">
       <div class="lmwppt-content">
 
@@ -21,7 +21,7 @@
       </div>
    </div>
    </a>
-   <a href="http://testsite.local/wp-admin/admin.php?page=license-manager-wppt-themes">
+   <a href="<?php echo admin_url( 'admin.php?page=license-manager-wppt-themes' ); ?>">
    <div class="lmwppt-inner">
       <div class="lmwppt-content">
 
@@ -38,7 +38,7 @@
       </div>
    </div>
    </a>
-   <a href="http://testsite.local/wp-admin/admin.php?page=license-manager-wppt-licenses">
+   <a href="<?php echo admin_url( 'admin.php?page=license-manager-wppt-licenses' ); ?>">
    <div class="lmwppt-inner">
       <div class="lmwppt-content">
          <div class="lmwppt-title">
