@@ -374,7 +374,7 @@
 
         // Parent slug input field hide show
         $(document).on('change', '#lmfwppt_menu_select', function(e) {
-            $('.parent-slug-menu').hide();
+            
             let menu = $(this).val(); 
             if(menu == "sub_menu"){
                 $(this).closest('.lmfwppt-form-section').find('.parent-slug-menu').show();

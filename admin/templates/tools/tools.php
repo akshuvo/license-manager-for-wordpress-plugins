@@ -44,6 +44,11 @@
                      </select>
                   </div>
 
+                  <div class="lmfwppt-form-field parent-slug-menu hidden">
+                     <label for="lmfwppt_parent_menu_slug"><?php esc_html_e( 'Parent Menu Slug', 'lmfwppt' ); ?></label>
+                     <input type="text" name="parent_slug" id="lmfwppt_parent_menu_slug" class="regular-text" placeholder="Parent Menu Slug" value="">
+                  </div>
+
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_page_title"><?php esc_html_e( 'Page Title', 'lmfwppt' ); ?></label>
                      <input type="text" name="page_title" id="lmfwppt_page_title" class="regular-text" placeholder="Page Title" value="">
@@ -52,11 +57,6 @@
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_menu_title"><?php esc_html_e( 'Menu Title', 'lmfwppt' ); ?></label>
                      <input type="text" name="menu_title" id="lmfwppt_menu_title" class="regular-text" placeholder="Menu Title" value="">
-                  </div>
-
-                  <div class="lmfwppt-form-field parent-slug-menu">
-                     <label for="lmfwppt_parent_menu_slug"><?php esc_html_e( 'Parent Menu Slug', 'lmfwppt' ); ?></label>
-                     <input type="text" name="parent_slug" id="lmfwppt_parent_menu_slug" class="regular-text" placeholder="Parent Menu Slug" value="">
                   </div>
 
                </div>
