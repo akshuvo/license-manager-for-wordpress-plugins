@@ -62,12 +62,12 @@
 
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_page_title"><?php esc_html_e( 'Page Title', 'lmfwppt' ); ?></label>
-                     <input type="text" name="page_title" id="lmfwppt_page_title" class="regular-text" placeholder="Page Title">
+                     <input type="text" name="page_title" id="lmfwppt_page_title" class="regular-text lmfwppt_page_title" placeholder="Page Title">
                   </div>
 
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_menu_title"><?php esc_html_e( 'Menu Title', 'lmfwppt' ); ?></label>
-                     <input type="text" name="menu_title" id="lmfwppt_menu_title" class="regular-text" placeholder="Menu Title">
+                     <input type="text" name="menu_title" id="lmfwppt_menu_title" class="regular-text lmfwppt_menu_title" placeholder="Menu Title">
                   </div>
 
                </div>
