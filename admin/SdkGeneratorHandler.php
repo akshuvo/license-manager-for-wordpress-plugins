@@ -46,6 +46,12 @@ function your_plugin_slug_updates( ){
             </pre>
         </div>
 
+        <div class="lmwppt-inner-card">
+            <pre>
+// Another Code block
+            </pre>
+        </div>
+
 
         <?php $output = ob_get_clean();
 
