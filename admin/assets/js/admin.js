@@ -388,17 +388,16 @@
 
             let product_name = $(this).find("option:selected").text();
 
-            if( !$(this).val() ){
+            if( !$(this).val() ) {
                 $(".lmfwppt_page_title").val('');
                 $(".lmfwppt_menu_title").val('');
                 return;
             }
-            if(product_name){
+            if( product_name ) {
                 $(".lmfwppt_page_title").val(product_name+' License Activation');
                 $(".lmfwppt_menu_title").val(product_name+' License');
             }
-            
-            console.log(product_name);
+
         });
 
         // Notice Messages show script
