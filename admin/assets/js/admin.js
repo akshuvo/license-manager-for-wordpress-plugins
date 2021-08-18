@@ -383,16 +383,6 @@
             }
         });
 
-        // Value set
-        $(document).on('change', '.products_list', function(e) {
-            let product_name = $( ".products_list option:selected" ).text();
-            if(product_name){
-                $(".lmfwppt_page_title").val(product_name);
-                $(".lmfwppt_menu_title").val(product_name);
-            }
-            console.log(product_name);
-        });
-
         // Notice Messages show script
         $(document).on("lmfwppt_notice", function(event, notice, type) {
             
