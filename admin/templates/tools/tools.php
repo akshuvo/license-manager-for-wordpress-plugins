@@ -11,9 +11,9 @@
                   <div class="lmfwppt-form-field">
                      <label for="product_type"><?php esc_html_e( 'Product Type', 'lmfwppt' ); ?></label>
                      <select name="product_type" class="product_type" id="product_type" required>
-                        <option value="" selected>Select Product Type</option>
-                        <option value="theme"><?php esc_html_e( 'theme', 'lmfwppt' ); ?></option>
-                        <option value="plugin"><?php esc_html_e( 'plugin', 'lmfwppt' ); ?></option>
+                        <option value="" selected><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></option>
+                        <option value="theme"><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
+                        <option value="plugin"><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
                      </select>
                   </div>
 
