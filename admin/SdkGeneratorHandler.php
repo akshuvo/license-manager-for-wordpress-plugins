@@ -27,12 +27,29 @@ class LMFWPPT_SdkGeneratorHandler{
         $menu_title = isset( $_POST['menu_title'] ) ? sanitize_text_field( $_POST['menu_title'] ) : '';
         $parent_menu_slug = isset( $_POST['parent_slug'] ) ? sanitize_text_field( $_POST['parent_slug'] ) : '';
 
-      	echo $product_type." ";
-      	echo $select_product." " ;
-      	echo $menu_type." ";
-      	echo $page_title." ";
-      	echo $menu_title." ";
-      	echo $parent_menu_slug;
+        ob_start(); ?>
+        <div class="lmwppt-inner-card">
+            <pre>
+/**
+ * License Management
+ */
+add_action( 'init', 'your_plugin_slug_updates' );
+function your_plugin_slug_updates( ){
+    include_once( dirname( __FILE__ ) . '/updates/LmfwpptAutoUpdatePlugin.php' );
+    $plugin = plugin_basename( __FILE__ );
+    $plugin_slug = (dirname(plugin_basename(__FILE__)));
+    $current_version = '1.0.0';
+    $remote_url = '<?php echo home_url('/'); ?>';
+
+    new LmfwpptAutoUpdatePlugin( $current_version, $plugin, $plugin_slug, $remote_url );
+}
+            </pre>
+        </div>
+
+
+        <?php $output = ob_get_clean();
+
+        echo $output;
 
         }
       die();

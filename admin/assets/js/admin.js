@@ -362,6 +362,8 @@
                 success: function(data) {
                     console.log(data);
 
+                    $('.sdk_generator_response').html(data);
+
                 },
                 error: function(data) {
                     console.log(data);
