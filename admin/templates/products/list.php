@@ -7,6 +7,12 @@ if( $page == 'license-manager-wppt-themes' ){
 }	
 
 ?>
+<?php if( isset( $_GET['deleted'] ) ) :   ?>
+<div class="notice notice-alt is-dismissible notice-success">
+    <p><?php echo sprintf(__("%s Deleted.", "lmfwppt"), ucfirst($product_type)) ?></p>
+</div>
+<?php endif; ?>
+
 <div class="wrap">
     <h1 class="wp-heading-inline"><?php _e( 'License Manager: '.$product_type.'s', 'lmfwppt' ); ?></h1>
 
