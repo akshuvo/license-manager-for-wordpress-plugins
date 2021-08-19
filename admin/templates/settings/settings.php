@@ -2,6 +2,9 @@
    $lmfwppt_settings = get_option( 'lmfwppt_settings' );
    $code_prefix = isset( $lmfwppt_settings['license_code_prefix'] ) ? $lmfwppt_settings['license_code_prefix'] : null;
    $character_limit = isset( $lmfwppt_settings['license_code_character_limit'] ) ? $lmfwppt_settings['license_code_character_limit'] : null;
+   $hide_cart_checkout = isset( $lmfwppt_settings['hide_wclm_info_from_cart'] ) ? $lmfwppt_settings['hide_wclm_info_from_cart'] : null;
+   $hide_order_email = isset( $lmfwppt_settings['hide_wclm_info_from_ordermeta'] ) ? $lmfwppt_settings['hide_wclm_info_from_ordermeta'] : null;
+    
 
 ?>
 
@@ -24,10 +27,10 @@
                   <th scope="row"><?php esc_html_e( 'Hide License Info from WooCommerce', 'lmfwppt' ); ?></th>
                    <td>
                        <fieldset><label>
-                           <input name="lmfwppt_settings[hide_wclm_info_from_cart]" type="checkbox" id="hide_cart_checkout"><?php esc_html_e( 'Hide from Cart & Checkout', 'lmfwppt' ); ?></label>
+                           <input name="lmfwppt_settings[hide_wclm_info_from_cart]" type="checkbox" id="hide_cart_checkout" <?php checked($hide_cart_checkout, "on"); ?>><?php esc_html_e( 'Hide from Cart & Checkout', 'lmfwppt' ); ?></label>
                        </fieldset>
                        <fieldset><label>
-                           <input name="lmfwppt_settings[hide_wclm_info_from_ordermeta]" type="checkbox" id="hide_order_email"><?php esc_html_e( 'Hide from Order Email', 'lmfwppt' ); ?></label>
+                           <input name="lmfwppt_settings[hide_wclm_info_from_ordermeta]" type="checkbox" id="hide_order_email" <?php checked($hide_order_email, "on"); ?>><?php esc_html_e( 'Hide from Order Email', 'lmfwppt' ); ?></label>
                        </fieldset>
                    </td>
                </tr>
