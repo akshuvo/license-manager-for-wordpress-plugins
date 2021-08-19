@@ -10,9 +10,9 @@
                   <div class="lmfwppt-form-field">
                      <label for="product_type"><?php esc_html_e( 'Product Type', 'lmfwppt' ); ?></label>
                      <select name="product_type" class="product_type" id="product_type" required>
-                        <option value="" selected><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></option>
-                        <option value="theme"><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
-                        <option value="plugin"><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
+                        <option value=""><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></option>
+                        <option value="<?php echo esc_attr( 'theme','lmfwppt' ); ?>"><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
+                        <option value="<?php echo esc_attr( 'plugin','lmfwppt' ); ?>"><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
                      </select>
                   </div>
 
@@ -37,15 +37,15 @@
 
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_menu_select"><?php esc_html_e( 'Menu Type', 'lmfwppt' ); ?></label>
-                      <select id="lmfwppt_menu_select" name="menu_type" class="menu_select" required>
-                        <option value="menu">Menu</option>
-                        <option value="sub_menu">Sub Menu</option>
+                     <select id="lmfwppt_menu_select" name="menu_type" class="menu_select" required>
+                        <option value="<?php echo esc_attr( 'menu','lmfwppt' ); ?>"><?php esc_html_e( 'Menu', 'lmfwppt' ); ?></option>
+                        <option value="<?php echo esc_attr( 'sub_menu','lmfwppt' ); ?>"><?php esc_html_e( 'Sub Menu', 'lmfwppt' ); ?></option>
                      </select>
                   </div>
 
                   <div class="lmfwppt-form-field parent-slug-menu hidden">
                      <label for="lmfwppt_parent_menu_slug"><?php esc_html_e( 'Parent Menu Slug', 'lmfwppt' ); ?></label>
-                     <input type="text" list="parent_slug_list" name="parent_slug" id="lmfwppt_parent_menu_slug" class="regular-text" placeholder="Parent Menu Slug">
+                     <input type="text" list="parent_slug_list" name="parent_slug" id="lmfwppt_parent_menu_slug" class="regular-text" placeholder="<?php esc_attr_e( 'Parent Menu Slug', 'lmfwppt' ); ?>">
                      <datalist id="parent_slug_list">
                        <option value="index.php">
                        <option value="edit.php">
@@ -62,12 +62,12 @@
 
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_page_title"><?php esc_html_e( 'Page Title', 'lmfwppt' ); ?></label>
-                     <input type="text" name="page_title" id="lmfwppt_page_title" class="regular-text lmfwppt_page_title" placeholder="Page Title">
+                     <input type="text" name="page_title" id="lmfwppt_page_title" class="regular-text lmfwppt_page_title" placeholder="<?php esc_attr_e( 'Page Title', 'lmfwppt' ); ?>">
                   </div>
 
                   <div class="lmfwppt-form-field">
                      <label for="lmfwppt_menu_title"><?php esc_html_e( 'Menu Title', 'lmfwppt' ); ?></label>
-                     <input type="text" name="menu_title" id="lmfwppt_menu_title" class="regular-text lmfwppt_menu_title" placeholder="Menu Title">
+                     <input type="text" name="menu_title" id="lmfwppt_menu_title" class="regular-text lmfwppt_menu_title" placeholder="<?php esc_attr_e( 'Menu Title', 'lmfwppt' ); ?>">
                   </div>
 
                </div>
