@@ -23,6 +23,7 @@
                   <th scope="row"><label for="license_code_character_limit"><?php esc_html_e('License Code Character Limit', 'lmfwppt') ?></label></th>
                   <td><input type="number" name="lmfwppt_settings[license_code_character_limit]" id="license_code_character_limit" class="regular-text" placeholder="<?php esc_attr_e( 'License Code Character Limit', 'lmfwppt' ); ?>" value="<?php echo $character_limit; ?>"></td>
                </tr>
+            <?php if( class_exists('LMFWPPTWCEXT')): ?>
                <tr>
                   <th scope="row"><?php esc_html_e( 'Hide License Info from WooCommerce', 'lmfwppt' ); ?></th>
                    <td>
@@ -34,6 +35,7 @@
                        </fieldset>
                    </td>
                </tr>
+            <?php endif; ?> 
 
             </tbody>
          </table>

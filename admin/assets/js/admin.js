@@ -213,6 +213,9 @@
             let id = $(this).val();
             let selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
 
+            if ( !is_edit ) {
+                jQuery('#lmfwppt_package_list').val('');
+            }
             $.ajax({
                 type:"POST",
                 url: ajaxurl,
@@ -354,6 +357,7 @@
                 beforeSend: function(data) {
                     $this.find('.spinner').addClass('is-active');
                     $this.find('[type="submit"]').prop('disabled', true);
+                    $('.sdk_generator_response').addClass('hidden');
                 },
                 complete: function(data) {
                     $this.find('.spinner').removeClass('is-active');
@@ -363,6 +367,7 @@
                     console.log(data);
 
                     $('.sdk_generator_response').html(data);
+                    $('.sdk_generator_response').removeClass('hidden');
 
                 },
                 error: function(data) {

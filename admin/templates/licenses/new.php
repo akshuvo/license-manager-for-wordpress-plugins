@@ -66,7 +66,7 @@ $product_id = isset( $product_details['product_id'] ) ? $product_details['produc
                     <div class="lmfwppt-form-field">
                         <label for="download_link"><?php esc_html_e( 'License Key', 'lmfwppt' ); ?></label>
                         <div class="lmfwppt-file-field">
-                            <input type="text" name="lmfwppt[license_key]" id="license_key" class="regular-text" placeholder="<?php esc_attr_e( 'License Key', 'lmfwppt' ); ?>" value="<?php echo esc_attr( $license_key ); ?>" readonly>
+                            <input type="text" name="lmfwppt[license_key]" id="license_key" class="regular-text" placeholder="<?php esc_attr_e( 'License Key', 'lmfwppt' ); ?>" value="<?php echo esc_attr( $license_key );?>" readonly required />
 
                             <button class="button" type="button" id="generate_key">
                             <span class="generate-key-label"><?php esc_html_e( 'Generate Key', 'lmfwppt' ); ?></span>
@@ -83,8 +83,8 @@ $product_id = isset( $product_details['product_id'] ) ? $product_details['produc
                     </div>
                     <div class="lmfwppt-form-field">
                         <label for="product_type"><?php esc_html_e( 'Product Type', 'lmfwppt' ); ?></label>
-                        <select name="lmfwppt[product_type]" id="product_type">
-                            <option value=" " selected>Select Product Type</option>
+                        <select name="lmfwppt[product_type]" id="product_type" required>
+                            <option value=""><?php esc_html_e( 'Select Product Type', 'lmfwppt' ); ?></option>
                             <option value="theme" <?php selected( $product_type, 'theme' ); ?> ><?php esc_html_e( 'Theme', 'lmfwppt' ); ?></option>
                             <option value="plugin" <?php selected( $product_type, 'plugin' ); ?> ><?php esc_html_e( 'Plugin', 'lmfwppt' ); ?></option>
                         </select>
@@ -93,7 +93,7 @@ $product_id = isset( $product_details['product_id'] ) ? $product_details['produc
                     <!-- Select Product -->
                     <div class="lmfwppt-form-field lmfwppt_theme_products">
                         <label for="product_theme_list"><?php esc_html_e( 'Select Product', 'lmfwppt' ); ?></label>
-                        <select name="lmfwppt[product_list]" class="products_list" id="product_theme_list">
+                        <select name="lmfwppt[product_list]" class="products_list" id="product_theme_list" required>
                             <option value="" class="blank">Select Product</option>
                             <?php
                                 $items = lmfwppt_get_product_list("theme");
@@ -110,8 +110,9 @@ $product_id = isset( $product_details['product_id'] ) ? $product_details['produc
                      
                     <!--  License Package -->
                     <div class="lmfwppt-form-field lmfwppt_license_package" id="lmfwppt_license_package">
-                        <label for="lmfwppt_theme_package">Select Package</label>
-                        <select name="lmfwppt[package_id]" id="lmfwppt_package_list" data-pack_value="<?php esc_attr_e( $package_id ); ?>">
+                        <label for="lmfwppt_theme_package"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></label>
+                        <select name="lmfwppt[package_id]" id="lmfwppt_package_list" data-pack_value="<?php esc_attr_e( $package_id, 'lmfwppt' ); ?>" required>
+                             <option value="" class="blank"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></option>
                              
                         </select>
                     </div>

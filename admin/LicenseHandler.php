@@ -186,7 +186,9 @@ class LMFWPPT_LicenseHandler {
         if( isset($_POST['id']) ) {
             $package_list = LMFWPPT_ProductsHandler::get_packages($_POST['id']);
             $selected = isset( $_POST['selected'] ) ? sanitize_text_field( $_POST['selected'] ) : '';
-
+            ?>
+             <option value="" class="blank"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></option>
+            <?php
             if( $package_list ) {
                 foreach( $package_list as $result ):
                     $package_id = $result['package_id'];
