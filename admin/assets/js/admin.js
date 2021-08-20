@@ -220,7 +220,7 @@
                 type:"POST",
                 url: ajaxurl,
                 data:{
-                    action:'package_id',
+                    action:'get_packages_option',
                     id:id,
                     selected:selected
                 },

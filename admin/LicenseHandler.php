@@ -11,7 +11,7 @@ class LMFWPPT_LicenseHandler {
     function __construct() {
         
         add_action( 'wp_ajax_license_add_form', [ $this, 'license_add' ] );
-        add_action( 'wp_ajax_package_id', [ $this, 'product_package' ] ); 
+        add_action( 'wp_ajax_get_packages_option', [ $this, 'product_package' ] ); 
         add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
 
@@ -182,13 +182,14 @@ class LMFWPPT_LicenseHandler {
 
     // Select Package 
     function product_package() {
-       
+
+        ?>
+        <option value="" class="blank"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></option>
+        <?php
         if( isset($_POST['id']) ) {
             $package_list = LMFWPPT_ProductsHandler::get_packages($_POST['id']);
             $selected = isset( $_POST['selected'] ) ? sanitize_text_field( $_POST['selected'] ) : '';
-            ?>
-             <option value="" class="blank"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></option>
-            <?php
+            
             if( $package_list ) {
                 foreach( $package_list as $result ):
                     $package_id = $result['package_id'];
