@@ -208,14 +208,18 @@
 
         // Add package
         $(document).on('change', '.products_list', function(e, is_edit){
-            
-            $(".lmfwppt_license_package").show();
-            let id = $(this).val();
-            let selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
 
             if ( !is_edit ) {
                 jQuery('#lmfwppt_package_list').val('');
             }
+
+            $(".lmfwppt_license_package").show();
+            let id = $(this).val();
+            if(id==''){
+                return;
+            }
+            let selected = $('#lmfwppt_package_list').attr('data-pack_value'); 
+
             $.ajax({
                 type:"POST",
                 url: ajaxurl,

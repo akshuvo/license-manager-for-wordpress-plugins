@@ -110,7 +110,7 @@ $product_id = isset( $product_details['product_id'] ) ? $product_details['produc
                      
                     <!--  License Package -->
                     <div class="lmfwppt-form-field lmfwppt_license_package" id="lmfwppt_license_package">
-                        <label for="lmfwppt_theme_package"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></label>
+                        <label for="lmfwppt_package_list"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></label>
                         <select name="lmfwppt[package_id]" id="lmfwppt_package_list" data-pack_value="<?php esc_attr_e( $package_id, 'lmfwppt' ); ?>" required>
                              <option value="" class="blank"><?php esc_html_e( 'Select Package', 'lmfwppt' ); ?></option>
                              
