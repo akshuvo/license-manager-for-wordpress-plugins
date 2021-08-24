@@ -15,9 +15,15 @@ class LMFWPPT_LicenseHandler {
         add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
 
+        // Get Product info
         if ( isset( $_GET['lmfwppt-info'] ) && $_GET['lmfwppt-info'] == "true" ) {
             $this->get_wp_license_details( $_GET );
             exit;
+        }
+
+        // Generate Download
+        if ( isset( $_GET['product_slug'] ) && isset( $_GET['license_key'] ) && isset( $_GET['action'] ) && $_GET['action'] == "download" ) {
+            $this->download_product( $_GET );
         }
         
     }
@@ -267,6 +273,71 @@ class LMFWPPT_LicenseHandler {
 
         $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}lmfwppt_licenses WHERE 1=%d AND order_id IN ( " . implode(',', $order_ids) . " ) ORDER BY dated DESC", 1 );
         return $wpdb->get_results( $query, ARRAY_A );
+    }
+
+    function download_product( $posted_args = array(), $admin_check = true ){
+        $response = array();
+
+        if ( $admin_check && !is_user_logged_in() ) {
+            die('Access Denied.');
+        }
+
+        if ( !is_array( $posted_args ) ) {
+            return false;
+        }
+
+        $args = wp_parse_args( $posted_args, array(
+            'product_slug' => '',
+            'license_key' => '',
+        ) );
+
+        global $wpdb;
+
+        // Check if expired
+        $isExpired = $wpdb->get_var( $wpdb->prepare("SELECT IF(lck.end_date < NOW(),TRUE,FALSE) as isExpired FROM {$wpdb->prefix}lmfwppt_licenses as lck WHERE license_key = %s ", $args['license_key']) );
+        if( $isExpired ) {
+            die('Access Denied.');
+        }
+
+        
+        $get_package = $wpdb->get_row( $wpdb->prepare("SELECT * FROM {$wpdb->prefix}lmfwppt_licenses WHERE license_key = %s ", $args['license_key']) );
+
+        $download_link = $wpdb->get_var( $wpdb->prepare("SELECT p.download_link FROM {$wpdb->prefix}lmfwppt_license_packages as lp INNER JOIN {$wpdb->prefix}lmfwppt_products as p ON p.id = lp.product_id WHERE lp.package_id = %s AND slug = %s", $get_package->package_id, $args['product_slug']) );
+
+   $remote_file_url = $download_link;
+    $downloadedFileName = "your_pdf_file.zip";
+
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $remote_file_url);
+    $downloadedFile = fopen($downloadedFileName, 'w+');
+    curl_setopt($ch, CURLOPT_FILE, $downloadedFile);
+    curl_exec ($ch);
+
+    curl_close ($ch);
+    fclose($downloadedFile);
+
+    
+    //header("Content-Disposition: attachment; filename={$_POST['myname']}" .date("m-d-y") . ".zip");
+
+        // Download 
+        //if( $download_link && 0) {
+            //readfile($download_link);
+
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename='.basename($download_link));
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($download_link));
+            readfile($downloadedFileName);
+            
+        //}
+
+
+        exit;
+
     }
 
 }
