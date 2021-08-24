@@ -304,24 +304,23 @@ class LMFWPPT_LicenseHandler {
 
         $download_link = $wpdb->get_var( $wpdb->prepare("SELECT p.download_link FROM {$wpdb->prefix}lmfwppt_license_packages as lp INNER JOIN {$wpdb->prefix}lmfwppt_products as p ON p.id = lp.product_id WHERE lp.package_id = %s AND slug = %s", $get_package->package_id, $args['product_slug']) );
 
-   $remote_file_url = $download_link;
-    $downloadedFileName = "your_pdf_file.zip";
+        $downloadedFileName = basename($download_link);
 
-    $ch = curl_init();
+        $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, $remote_file_url);
-    $downloadedFile = fopen($downloadedFileName, 'w+');
-    curl_setopt($ch, CURLOPT_FILE, $downloadedFile);
-    curl_exec ($ch);
+        curl_setopt($ch, CURLOPT_URL, $download_link);
+        $downloadedFile = fopen($downloadedFileName, 'w+');
+        curl_setopt($ch, CURLOPT_FILE, $downloadedFile);
+        curl_exec ($ch);
 
-    curl_close ($ch);
-    fclose($downloadedFile);
+        curl_close ($ch);
+        fclose($downloadedFile);
+        unlink($downloadedFile);
 
     
-    //header("Content-Disposition: attachment; filename={$_POST['myname']}" .date("m-d-y") . ".zip");
 
         // Download 
-        //if( $download_link && 0) {
+        if( $download_link ) {
             //readfile($download_link);
 
             header('Content-Description: File Transfer');
@@ -333,7 +332,7 @@ class LMFWPPT_LicenseHandler {
             header('Content-Length: ' . filesize($download_link));
             readfile($downloadedFileName);
             
-        //}
+        }
 
 
         exit;
