@@ -14,6 +14,8 @@ class LMFWPPT_LicenseHandler {
         add_action( 'wp_ajax_get_packages_option', [ $this, 'product_package' ] ); 
         add_action( 'wp_ajax_license_key', [ $this, 'ajax_generate_license_key' ] );
         add_action( 'admin_init', [ $this, 'delete_license' ] );
+        // Add Domain field ajax
+        add_action( 'wp_ajax_lmfwppt_domain_active_field_action', [ $this, 'domain_ajax_add_action' ] );
 
         // Get Product info
         if ( isset( $_GET['lmfwppt-info'] ) && $_GET['lmfwppt-info'] == "true" ) {
@@ -26,6 +28,84 @@ class LMFWPPT_LicenseHandler {
             $this->download_product( $_GET );
         }
         
+    }
+
+    // Section information Field add
+    function domain_ajax_add_action(){
+
+        $key = sanitize_text_field( $_POST['key'] );
+
+        ob_start();
+
+        echo self::domain_sections_field( array(
+            //'key' => $key,
+            'thiskey' => $key,
+        ) );
+
+        $output = ob_get_clean();
+
+        echo $output;
+
+        die();
+    }
+
+    // Single Section field
+    public static function domain_sections_field( $args ){
+
+        $defaults = array (
+            'key' => '',
+            'url' => '',
+            'deactivate' => '',
+        );
+
+        // Parse incoming $args into an array and merge it with $defaults
+        $args = wp_parse_args( $args, $defaults );
+
+        // Let's extract the array to variable
+        extract( $args );
+
+        // Array key
+        //$key =  isset( $args['key'] ) ? $args['key'] : "";
+        $key =  !empty( $key ) ? $key : wp_generate_password( 3, false );
+   
+        $field_name = "lmfwppt[domains][$key]";
+
+        ob_start();
+        do_action( 'lmfwppt_license_field_before_wrap', $args );
+        ?>
+
+         <div id="postimagediv" class="postbox lmfwppt_license_field"> <!-- Wrapper Start -->
+            <span id="poststuff">
+                <h2 class="hndle">
+                     
+                    <input id="<?php esc_attr_e( $field_name ); ?>-lmfwppt_domain" class="regular-text" type="url" name="<?php esc_attr_e( $field_name ); ?>[url]" value="<?php echo esc_attr( $url ); ?>" placeholder="<?php echo esc_attr( 'Url', 'lmfwppt' ); ?>" required />
+                    <label for="users_can_register" class="lmfwppt_label_space">
+                        <input name="<?php esc_attr_e( $field_name ); ?>[deactivate]" type="checkbox" id="<?php esc_attr_e( $field_name ); ?>-lmfwppt_deactivate" <?php checked($deactivate, "on"); ?>><?php esc_html_e( 'Deactivate', 'lmfwppt' ); ?>
+                    </label>
+                    <span class="delete_field">&times;</span>
+                </h2>
+            </span>
+        </div>
+        <?php
+        $output = ob_get_clean();
+
+        return do_action( 'lmfwppt_license_field_after_wrap', $output, $args );
+    }
+
+     // Generate html from Domain array
+    public static function get_domains_html( $get_domains = null ){
+        if( !$get_domains ){
+            return;
+        }
+
+        foreach ($get_domains as $domains) {
+            self::domain_sections_field( array(
+                'key' => sanitize_title($domains['url']),
+                'url' => $domains['url'],
+                'deactivate' => $domains['deactivate']
+            ) );
+        }
+
     }
 
     // Get Product details by id al
@@ -167,11 +247,13 @@ class LMFWPPT_LicenseHandler {
     function create_license( $post_data = array() ){
         global $wpdb;
         $table = $wpdb->prefix.'lmfwppt_licenses';
+
         $data = array(
             'license_key' => isset($post_data['license_key']) ? sanitize_text_field( $post_data['license_key'] ) : "",
             'package_id' => isset($post_data['package_id']) ? sanitize_text_field( $post_data['package_id'] ) : "",
             'order_id' => isset($post_data['order_id']) ? sanitize_text_field( $post_data['order_id'] ) : "",
             'end_date' => isset($post_data['end_date']) ? date("Y-m-d", strtotime( $post_data['end_date'] ) ) : "",
+            'domains' => isset($post_data['domains']) ? serialize( $post_data['domains'] ): "",
         );
 
         if ( isset( $post_data['license_id'] ) ) {

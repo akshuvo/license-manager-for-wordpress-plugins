@@ -7,6 +7,7 @@ $product_defaults_args = array (
     'order_id' => '',
     'package_id' => '',
     'end_date' => '',
+    'domains' => '',
 );
 
 
@@ -43,6 +44,9 @@ if ( $end_date ) {
 $product_details = LMFWPPT_ProductsHandler::get_product_details_by_package_id($package_id);
 $product_type = isset( $product_details['product_type'] ) ? $product_details['product_type'] : '' ;
 $product_id = isset( $product_details['product_id'] ) ? $product_details['product_id'] : '';
+
+// Domains Unserialize
+$domains_arr = unserialize($domains);
 
 ?>
 <div class="wrap">
@@ -121,6 +125,15 @@ $product_id = isset( $product_details['product_id'] ) ? $product_details['produc
                         <label for="end_date"><?php esc_html_e( 'License End Date', 'lmfwppt' ); ?></label>
                         <input type="text" name="lmfwppt[end_date]" id="end_date" class="regular-text product_name_input" placeholder="License End Date" value="<?php echo esc_attr( $end_date ); ?>" required>
                     </div>
+                </div>
+            </div>
+            <div class="lmwppt-inner-card">
+                <div class="lmfwppt-form-section" id="license-information">
+                    <h2>Activated Domains</h2>
+                    <div id="lmfwppt_domains_fields">
+                        <?php LMFWPPT_LicenseHandler::get_domains_html( $domains_arr ); ?>
+                    </div>
+                    <button class="button lmfwppt-domain-activate" type="button">Add Domain</button>
                 </div>
             </div>
           

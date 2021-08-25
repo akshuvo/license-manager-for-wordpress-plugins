@@ -132,7 +132,7 @@ class LMFWPPT_ProductsHandler {
         $output = ob_get_clean();
 
         return do_action( 'lmfwppt_license_field_after_wrap', $output, $args );
-    }
+    } 
 
     // Section information Field add
     function product_sections_ajax_add_action(){
