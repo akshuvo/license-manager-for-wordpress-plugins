@@ -1,1 +1,30 @@
 /* CSS  */
+
+.manage-activations{
+    padding: 15px;
+    box-shadow: 0px 0px 18px 0px #77777757;
+    position: fixed;
+    top: 140px;
+    right: 72px;
+    background: #fff;
+    width: 61%;
+    z-index: 99;
+    visibility: hidden;
+    /*transform: translateY(-50%) scale(.8);*/
+    opacity: 0;
+    transition: all .3s ease;
+}
+.manage-activations-list{
+    display: flex;
+    align-items: center;
+}
+.active{
+    visibility: visible;
+    opacity: 1;
+    /*transform: translateY(-50%) scale(1);*/
+}
+.manage-activations p {
+    margin: 0;
+    max-width: 300px;
+    width: 100%;
+}
