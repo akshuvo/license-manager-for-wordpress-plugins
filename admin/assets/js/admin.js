@@ -53,7 +53,7 @@
             var $this = $(this);
 
             var keyLen = jQuery('.lmfwppt_license_field').length;
-
+ 
             var data = {
                 action: 'lmfwppt_single_section_field',
                 key: keyLen,
@@ -80,6 +80,38 @@
             });
         });
 
+        // Add Domain Field
+        $(document).on('click', '.lmfwppt-domain-activate', function(){
+            
+            var $this = $(this);
+
+            var keyLen = jQuery('.lmfwppt_license_field').length;
+ 
+            var data = {
+                action: 'lmfwppt_domain_active_field_action',
+                key: keyLen,
+                thiskey: keyLen,
+            }
+
+            $.ajax({
+              url: ajaxurl,
+              type: 'post',
+              data: data,
+              beforeSend : function ( xhr ) {
+                $this.prop('disabled', true);
+              },
+              success: function( res ) {
+                $this.prop('disabled', false);
+
+                // Data push
+                $('#lmfwppt_domains_fields').append(res);
+              },
+              error: function( result ) {
+                $this.prop('disabled', false);
+                console.error( result );
+              }
+            });
+        });
 
         // Add File
         var file_frame, pushSelector, getFrameTitle;
@@ -289,6 +321,7 @@
 
             if ( !is_edit ) {
                 jQuery('.products_list').val('');
+                jQuery('#lmfwppt_package_list').val('');
             }
 
             if(thisVal == "theme"){
