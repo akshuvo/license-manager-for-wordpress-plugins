@@ -79,7 +79,7 @@ class LMFWPPT_LicenseHandler {
                 <h2 class="hndle">
                      
                     <input id="<?php esc_attr_e( $field_name ); ?>-lmfwppt_domain" class="regular-text" type="url" name="<?php esc_attr_e( $field_name ); ?>[url]" value="<?php echo esc_attr( $url ); ?>" placeholder="<?php echo esc_attr( 'Url', 'lmfwppt' ); ?>" required />
-                    <label for="users_can_register" class="lmfwppt_label_space">
+                    <label class="lmfwppt_label_space">
                         <input name="<?php esc_attr_e( $field_name ); ?>[deactivate]" type="checkbox" id="<?php esc_attr_e( $field_name ); ?>-lmfwppt_deactivate" <?php checked($deactivate, "on"); ?>><?php esc_html_e( 'Deactivate', 'lmfwppt' ); ?>
                     </label>
                     <span class="delete_field">&times;</span>
